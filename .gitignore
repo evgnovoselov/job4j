@@ -25,6 +25,10 @@ hs_err_pid*
 # My rules =>
 target
 
+# IDEA
+.idea
+*.iml
+
 # Sublime
 *.sublime-project
 *.sublime-workspace
