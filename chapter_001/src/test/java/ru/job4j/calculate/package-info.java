@@ -1,6 +1,6 @@
 /**
  * Test package for calculate task.
- * 
+ *
  * @author Evgeny Novoselov
  * @version $id$
  * @since 0.1
