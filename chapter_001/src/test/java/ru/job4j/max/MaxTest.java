@@ -18,4 +18,14 @@ public class MaxTest {
         int result = maxim.max(1, 2);
         assertThat(result, is(2));
     }
+
+    /**
+     * Тест метода нахождения максимального числа из 3-х чисел
+     */
+    @Test
+    public void whenFirstLessThirdLessSecond() {
+        Max maxim = new Max();
+        int result = maxim.max(1, 5, 3);
+        assertThat(result, is(5));
+    }
 }
