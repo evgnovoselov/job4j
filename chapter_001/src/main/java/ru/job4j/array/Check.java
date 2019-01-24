@@ -13,11 +13,13 @@ public class Check {
      * @return Возвращает true если все значения одинаковые
      */
     public boolean mono(boolean[] data) {
+        boolean result = true;
         for (boolean value : data) {
             if (value != data[0]) {
-                return false;
+                result = false;
+                break;
             }
         }
-        return true;
+        return result;
     }
 }
