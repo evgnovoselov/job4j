@@ -13,11 +13,12 @@ public class Turn {
      * @return Возвращает развернутый массив
      */
     public int[] back(int[] array) {
-        for (int i = 0; i < array.length / 2; i++) {
-            int temp = array[i];
-            array[i] = array[array.length - i - 1];
-            array[array.length - i - 1] = temp;
+        int[] resultArray = array.clone();
+        for (int i = 0; i < resultArray.length / 2; i++) {
+            int temp = resultArray[i];
+            resultArray[i] = resultArray[resultArray.length - i - 1];
+            resultArray[resultArray.length - i - 1] = temp;
         }
-        return array;
+        return resultArray;
     }
 }
