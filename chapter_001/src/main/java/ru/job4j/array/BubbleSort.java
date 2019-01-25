@@ -15,9 +15,9 @@ public class BubbleSort {
     public int[] sort(int[] array) {
         int[] resultArray = array.clone();
         boolean checkSort;
-        do {
+        for (int sortElement = 0; sortElement < resultArray.length; sortElement++) {
             checkSort = false;
-            for (int i = 0; i < resultArray.length - 1; i++) {
+            for (int i = 0; i < resultArray.length - 1 - sortElement; i++) {
                 if (resultArray[i] > resultArray[i + 1]) {
                     checkSort = true;
                     int temp = resultArray[i];
@@ -25,7 +25,10 @@ public class BubbleSort {
                     resultArray[i + 1] = temp;
                 }
             }
-        } while (checkSort);
+            if (!checkSort) {
+                break;
+            }
+        }
         return resultArray;
     }
 }
