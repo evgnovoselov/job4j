@@ -1,17 +1,17 @@
 package ru.job4j.array;
 
 /**
- * Класс объединения двух массивов (отсортированных по возрастанию) в третий
+ * Класс объединения двух массивов (отсортированных по возрастанию) в третий.
  *
  * @author Evgeny Novoselov
  */
 public class ArrayMerge {
     /**
-     * Метод объединяет два отсортированных массива по возрастанию в третий
+     * Метод объединяет два отсортированных массива по возрастанию в третий.
      *
-     * @param array1
-     * @param array2
-     * @return Объединенный массив
+     * @param array1 Отсортированный массив по возрастанию
+     * @param array2 Отсортированный массив по возрастанию
+     * @return Объединенный массив отсортированный по возрастанию
      */
     public static int[] merge(int[] array1, int[] array2) {
         int maxElements = array1.length + array2.length;
@@ -35,7 +35,6 @@ public class ArrayMerge {
                 indexArray1++;
             }
         }
-
         return result;
     }
 }

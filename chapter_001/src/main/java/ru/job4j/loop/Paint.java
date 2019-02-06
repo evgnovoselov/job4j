@@ -59,17 +59,17 @@ public class Paint {
      * @return Возвращаем строковое представление пирамиды
      */
     private String loopBy(int height, int weight, BiPredicate<Integer, Integer> predict) {
-        StringBuilder screen = new StringBuilder();
+        StringBuilder pyramid = new StringBuilder();
         for (int row = 0; row != height; row++) {
             for (int column = 0; column != weight; column++) {
                 if (predict.test(row, column)) {
-                    screen.append("^");
+                    pyramid.append("^");
                 } else {
-                    screen.append(" ");
+                    pyramid.append(" ");
                 }
             }
-            screen.append(System.lineSeparator());
+            pyramid.append(System.lineSeparator());
         }
-        return screen.toString();
+        return pyramid.toString();
     }
 }

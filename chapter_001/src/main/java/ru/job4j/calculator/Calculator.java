@@ -1,7 +1,7 @@
 package ru.job4j.calculator;
 
 /**
- * This is Calculator class
+ * This is Calculator class.
  *
  * @author Evgeny Novoselov
  */
@@ -10,7 +10,7 @@ public class Calculator {
     private double result;
 
     /**
-     * Get result
+     * Get result.
      *
      * @return result
      */
@@ -19,7 +19,7 @@ public class Calculator {
     }
 
     /**
-     * Sum first and second parameters and save result
+     * Sum first and second parameters and save result.
      *
      * @param first  first parameter
      * @param second second parameter
@@ -29,7 +29,7 @@ public class Calculator {
     }
 
     /**
-     * Subtraction first and second parameters and save result
+     * Subtraction first and second parameters and save result.
      *
      * @param first  first parameter
      * @param second second parameter
@@ -39,7 +39,7 @@ public class Calculator {
     }
 
     /**
-     * Division first and second parameters and save result
+     * Division first and second parameters and save result.
      *
      * @param first  first parameter
      * @param second second parameter
@@ -49,7 +49,7 @@ public class Calculator {
     }
 
     /**
-     * Multiplication first and second parameters and save result
+     * Multiplication first and second parameters and save result.
      *
      * @param first  first parameter
      * @param second second parameter
