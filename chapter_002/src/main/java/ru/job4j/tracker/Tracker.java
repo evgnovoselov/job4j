@@ -97,19 +97,13 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         int count = 0;
-        for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getName().contains(key)) {
-                count++;
-            }
-        }
-        Item[] result = new Item[count];
-        count = 0;
+        Item[] result = new Item[this.position];
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getName().contains(key)) {
                 result[count++] = this.items[i];
             }
         }
-        return result;
+        return Arrays.copyOf(result, count);
     }
 
     /**
