@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.Arrays;
+import java.util.Date;
+
 /**
  * Класс заявок
  *
@@ -16,6 +19,10 @@ public class Item {
         this.name = name;
         this.description = description;
         this.created = created;
+    }
+
+    public Item(String name, String description) {
+        this(name, description, new Date().getTime());
     }
 
     public String getId() {
@@ -56,5 +63,16 @@ public class Item {
 
     public void setComments(String[] comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + ", description='" + description + '\''
+                + ", created=" + created
+                + ", comments=" + Arrays.toString(comments)
+                + '}';
     }
 }
