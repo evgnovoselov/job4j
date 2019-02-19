@@ -41,6 +41,8 @@ public class StartUI {
      */
     private static final String EXIT = "6";
 
+    private final String nl = System.lineSeparator();
+
     /**
      * Получение данных от пользователя.
      */
@@ -113,7 +115,7 @@ public class StartUI {
      */
     private void showByNameItems() {
         System.out.println("--------------------------------");
-        System.out.println("Поиск заявок по имени");
+        System.out.println("Поиск заявок по имени:");
         Item[] items = this.tracker.findByName(this.input.ask("Введите имя заявки: "));
         this.printItems(items);
     }
@@ -123,14 +125,12 @@ public class StartUI {
      */
     private void showByIdItem() {
         System.out.println("--------------------------------");
-        System.out.println("Поиск заявки по уникальному номеру");
+        System.out.println("Поиск заявки по уникальному номеру:");
         Item item = this.askFindByIdItem();
         if (item == null) {
             return;
         }
-        System.out.println("Найденная заявка: ");
-        System.out.println(item);
-        System.out.println("--------------------------------");
+        this.printItems(new Item[]{item});
     }
 
     /**
@@ -193,7 +193,7 @@ public class StartUI {
      */
     private void printItems(Item[] items) {
         System.out.println("--------------------------------");
-        System.out.println("Найдено заявок:" + items.length);
+        System.out.println("Найдено заявок: " + items.length);
         for (Item item : items) {
             System.out.println(item);
         }
@@ -206,7 +206,7 @@ public class StartUI {
      */
     private void showAllItems() {
         System.out.println("--------------------------------");
-        System.out.println("Вывод всех заявок: ");
+        System.out.println("Вывод всех заявок:");
         Item[] items = this.tracker.findAll();
         this.printItems(items);
     }
@@ -227,14 +227,17 @@ public class StartUI {
      * Выводим меню
      */
     private void showMenu() {
-        System.out.println("Меню.");
-        System.out.println(ADD + ". Добавление новой заявки\n"
-                + SHOW_ALL + ". Отображение списка всех заявок\n"
-                + EDIT + ". Редактирование заявки\n"
-                + DELETE + ". Удаление заявки\n"
-                + FIND_BY_ID + ". Поиск заявки по уникальному номеру\n"
-                + FIND_BY_NAME + ". Поиск заявок по имени\n"
-                + EXIT + ". Выход из программы\n");
+        System.out.println(
+                new StringBuilder()
+                        .append("Меню.").append(this.nl)
+                        .append(ADD).append(". Добавление новой заявки").append(this.nl)
+                        .append(SHOW_ALL).append(". Отображение списка всех заявок").append(this.nl)
+                        .append(EDIT).append(". Редактирование заявки").append(this.nl)
+                        .append(DELETE).append(". Удаление заявки").append(this.nl)
+                        .append(FIND_BY_ID).append(". Поиск заявки по уникальному номеру").append(this.nl)
+                        .append(FIND_BY_NAME).append(". Поиск заявок по имени").append(this.nl)
+                        .append(EXIT).append(". Выход из программы").append(this.nl)
+        );
     }
 
     /**
