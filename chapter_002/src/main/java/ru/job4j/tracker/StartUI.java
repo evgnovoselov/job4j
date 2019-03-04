@@ -33,9 +33,10 @@ public class StartUI {
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
         menu.fillActions();
+        int[] range = menu.getKeyActions();
         do {
             menu.show();
-            menu.select(Integer.valueOf(input.ask("Введите пункт меню : ")));
+            menu.select(input.ask("Введите пункт меню : ", range));
         } while (!menu.exitProgram);
     }
 
@@ -45,6 +46,6 @@ public class StartUI {
      * @param args Аргументы запуска программы
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }

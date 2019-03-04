@@ -39,4 +39,16 @@ public class StubInput implements Input {
     public String ask(String question) {
         return this.value[this.position++];
     }
+
+    /**
+     * Метод задает вопрос и возвращает ответ.
+     *
+     * @param question вопрос.
+     * @param range    возможный ответ.
+     * @return возвращает введенный ответ.
+     */
+    @Override
+    public int ask(String question, int[] range) {
+        return Integer.valueOf(this.ask(question));
+    }
 }

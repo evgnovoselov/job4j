@@ -35,11 +35,22 @@ public class MenuTracker {
     }
 
     /**
+     * @return
+     */
+    public int[] getKeyActions() {
+        int[] keys = new int[this.actions.size()];
+        for (int i = 0; i < this.actions.size(); i++) {
+            keys[i] = this.actions.get(i).key();
+        }
+        return keys;
+    }
+
+    /**
      * Метод для получения массива меню.
      *
      * @return длину массива
      */
-    public int getActionsLentgh() {
+    public int getActionsLength() {
         return this.actions.size();
     }
 
@@ -63,15 +74,11 @@ public class MenuTracker {
      * @param key ключ операции
      */
     public void select(int key) {
-        boolean haveSelect = false;
         for (UserAction action : this.actions) {
             if (key == action.key()) {
-                haveSelect = true;
                 action.execute(this.input, this.tracker);
+                break;
             }
-        }
-        if (!haveSelect) {
-            this.showNotSelect();
         }
     }
 
@@ -86,15 +93,6 @@ public class MenuTracker {
             }
         }
         System.out.println();
-    }
-
-    /**
-     * Неизвестный ввод пользователя
-     */
-    private void showNotSelect() {
-        System.out.println("--------------------------------");
-        System.out.println("¯\\_(ツ)_/¯ Вы ввели что-то не то." + System.lineSeparator() + "Попробуйте еще раз :)");
-        System.out.println("--------------------------------");
     }
 
     /**
