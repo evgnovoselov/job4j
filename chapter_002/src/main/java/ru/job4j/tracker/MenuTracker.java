@@ -35,7 +35,9 @@ public class MenuTracker {
     }
 
     /**
-     * @return
+     * Метод возвращает существующие ключи действий.
+     *
+     * @return массив ключей операций
      */
     public int[] getKeyActions() {
         int[] keys = new int[this.actions.size()];
