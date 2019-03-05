@@ -290,21 +290,26 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("--------------------------------");
             System.out.println("Редактирование заявки");
-            Item item = askFindByIdItem();
-            if (item == null) {
+            Item previous = askFindByIdItem();
+            if (previous == null) {
                 return;
             }
+            String name;
+            String description;
             System.out.println("--------------------------------"
                     + "\nНайденная заявка: "
-                    + "\nУникальный номер: " + item.getId()
-                    + "\nИмя заявки: " + item.getName()
+                    + "\nУникальный номер: " + previous.getId()
+                    + "\nИмя заявки: " + previous.getName()
                     + "\n--------------------------------");
-            item.setName(input.ask("Введите новое имя заявки:"));
+            name = input.ask("Введите новое имя заявки:");
             System.out.println("--------------------------------"
-                    + "\nОписание заявки: " + item.getDescription()
+                    + "\nОписание заявки: " + previous.getDescription()
                     + "\n--------------------------------");
-            item.setDescription(input.ask("Введите новое описание заявки:"));
+            description = input.ask("Введите новое описание заявки:");
             System.out.println("--------------------------------");
+            Item next = new Item(name, description);
+            next.setId(previous.getId());
+            tracker.replace(previous.getId(), next);
         }
 
         /**
@@ -347,11 +352,8 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("--------------------------------");
             System.out.println("Удаление заявки");
-            Item item = askFindByIdItem();
-            if (item == null) {
-                return;
-            }
-            System.out.println(tracker.delete(item.getId()) ? "Заявка успешно удалена" : "Ошибка удаления заявки");
+            String id = input.ask("Введите уникальный номер заявки: ");
+            System.out.println(tracker.delete(id) ? "Заявка успешно удалена" : "Ошибка удаления заявки");
             System.out.println("--------------------------------");
         }
 
