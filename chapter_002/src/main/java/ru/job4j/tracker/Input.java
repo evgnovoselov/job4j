@@ -6,6 +6,12 @@ package ru.job4j.tracker;
  * @author Evgeny Novoselov
  */
 public interface Input {
+    /**
+     * Метод задает вопрос и возвращает ответ
+     *
+     * @param question вопрос.
+     * @return ответ.
+     */
     String ask(String question);
 
     /**

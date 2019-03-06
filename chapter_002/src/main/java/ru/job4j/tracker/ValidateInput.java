@@ -5,7 +5,24 @@ package ru.job4j.tracker;
  *
  * @author Evgeny Novoselov
  */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input {
+    private final Input input;
+
+    public ValidateInput(final Input input) {
+        this.input = input;
+    }
+
+    /**
+     * Метод задает вопрос и возвращает ответ
+     *
+     * @param question вопрос.
+     * @return ответ.
+     */
+    @Override
+    public String ask(String question) {
+        return this.input.ask(question);
+    }
+
     /**
      * Метод задает вопрос и возвращает ответ.
      *
@@ -19,13 +36,13 @@ public class ValidateInput extends ConsoleInput {
         boolean invalid = true;
         do {
             try {
-                result = super.ask(question, range);
+                result = this.input.ask(question, range);
                 invalid = false;
             } catch (MenuOutException e) {
                 System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("--------------------------------");
-                System.out.println("¯\\_(ツ)_/¯ Неверный формат ввода." + System.lineSeparator() + "Попробуйте еще раз :)");
+                System.out.println("Неверный формат ввода." + System.lineSeparator() + "Попробуйте еще раз.");
                 System.out.println("--------------------------------");
             }
         } while (invalid);
