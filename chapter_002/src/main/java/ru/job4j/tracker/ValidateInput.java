@@ -39,7 +39,7 @@ public class ValidateInput implements Input {
                 result = this.input.ask(question, range);
                 invalid = false;
             } catch (MenuOutException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Данного раздела меню не существует");
             } catch (NumberFormatException e) {
                 System.out.println("--------------------------------");
                 System.out.println("Неверный формат ввода." + System.lineSeparator() + "Попробуйте еще раз.");

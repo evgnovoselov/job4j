@@ -63,4 +63,23 @@ public class ValidateInputTest {
                 )
         );
     }
+
+    /**
+     * Метод тестирования выхода за диапазон ввода.
+     */
+    @Test
+    public void whenMenuOutInput() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[]{"7", "1"})
+        );
+        input.ask("Enter", new int[]{1});
+        assertThat(
+                this.mem.toString(),
+                is(
+                        new StringBuilder()
+                                .append("Данного раздела меню не существует").append(System.lineSeparator())
+                                .toString()
+                )
+        );
+    }
 }
