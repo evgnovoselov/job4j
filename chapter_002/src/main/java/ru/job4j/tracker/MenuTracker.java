@@ -127,23 +127,9 @@ public class MenuTracker {
         return item;
     }
 
-    private class AddItem implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class AddItem extends BaseAction {
         public AddItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -164,35 +150,11 @@ public class MenuTracker {
             System.out.println("Description : " + item.getDescription());
             System.out.println("--------------------------------");
         }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    private class ExitProgram implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class ExitProgram extends BaseAction {
         public ExitProgram(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -205,35 +167,11 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             exitProgram = true;
         }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    private class ShowItems implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class ShowItems extends BaseAction {
         public ShowItems(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -249,35 +187,11 @@ public class MenuTracker {
             Item[] items = tracker.findAll();
             printItems(items);
         }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    private class UpdateItem implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class UpdateItem extends BaseAction {
         public UpdateItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -311,35 +225,11 @@ public class MenuTracker {
             next.setId(previous.getId());
             tracker.replace(previous.getId(), next);
         }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    private class DeleteItem implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class DeleteItem extends BaseAction {
         public DeleteItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -356,35 +246,11 @@ public class MenuTracker {
             System.out.println(tracker.delete(id) ? "Заявка успешно удалена" : "Ошибка удаления заявки");
             System.out.println("--------------------------------");
         }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    private class FindItemById implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class FindItemById extends BaseAction {
         public FindItemById(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -403,35 +269,11 @@ public class MenuTracker {
             }
             printItems(new Item[]{item});
         }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    private class FindItemsByName implements UserAction {
-        private final int key;
-        private final String info;
-
+    private class FindItemsByName extends BaseAction {
         public FindItemsByName(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        /**
-         * Метод возвращает ключ опции.
-         *
-         * @return ключ
-         */
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         /**
@@ -446,16 +288,6 @@ public class MenuTracker {
             System.out.println("Поиск заявок по имени:");
             Item[] items = tracker.findByName(input.ask("Введите имя заявки: "));
             printItems(items);
-        }
-
-        /**
-         * Метод возвращает информацию о данном пункте меню.
-         *
-         * @return Строка меню
-         */
-        @Override
-        public String info() {
-            return info;
         }
     }
 }
