@@ -1,7 +1,8 @@
 package ru.job4j.tracker;
 
 /**
- * Класс эмулятор ввода в консоль для работы с меню StartUI
+ * Класс эмулятор ввода в консоль для работы с меню StartUI.
+ * Наследование.
  *
  * @author Evgeny Novoselov
  */

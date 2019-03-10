@@ -5,6 +5,7 @@ import java.util.Random;
 
 /**
  * Класс хранилище заявок.
+ * Агрегация.
  *
  * @author Evgeny Novoselov
  */

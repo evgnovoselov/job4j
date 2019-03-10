@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Консольный ввод параметров.
+ * Наследование
  *
  * @author Evgeny Novoselov
  */

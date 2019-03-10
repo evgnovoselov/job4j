@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Класс реализует меню трекера
+ * Класс реализует меню трекера.
+ * Композиция.
  *
  * @author Evgeny Novoselov
  */
@@ -127,6 +128,10 @@ public class MenuTracker {
         return item;
     }
 
+    /**
+     * Вложенный класс действия добавления заявки.
+     * Наследование.
+     */
     private class AddItem extends BaseAction {
         public AddItem(int key, String info) {
             super(key, info);
@@ -152,6 +157,10 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Вложенный класс действия выхода из программы.
+     * Наследвание.
+     */
     private class ExitProgram extends BaseAction {
         public ExitProgram(int key, String info) {
             super(key, info);
@@ -169,6 +178,10 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Вложенный класс действия просмотра всез заявок.
+     * Наследования.
+     */
     private class ShowItems extends BaseAction {
         public ShowItems(int key, String info) {
             super(key, info);
@@ -189,6 +202,10 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Вложенный класс действия обновления заявки.
+     * Наследование.
+     */
     private class UpdateItem extends BaseAction {
         public UpdateItem(int key, String info) {
             super(key, info);
@@ -227,6 +244,10 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Вложенный класс действия удаления заявки.
+     * Наследование.
+     */
     private class DeleteItem extends BaseAction {
         public DeleteItem(int key, String info) {
             super(key, info);
@@ -248,6 +269,10 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Вложенный клас действия нахождения заявки по уникальному номеру.
+     * Наследование.
+     */
     private class FindItemById extends BaseAction {
         public FindItemById(int key, String info) {
             super(key, info);
@@ -271,6 +296,10 @@ public class MenuTracker {
         }
     }
 
+    /**
+     * Вложенный класс действия нахождения заявок по имени.
+     * Наследование.
+     */
     private class FindItemsByName extends BaseAction {
         public FindItemsByName(int key, String info) {
             super(key, info);

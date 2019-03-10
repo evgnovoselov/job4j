@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 /**
  * Неправильный пункт меню логическая ошибка.
+ * Наследование.
  *
  * @author Evgeny Novoselov
  */

@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 /**
  * Класс взаимодействия с пользователем.
+ * Композиция.
  *
  * @author Evgeny Novoselov
  */

@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 /**
  * Абстрактный класс действий.
+ * Наследование.
  *
  * @author Evgeny Novoselov
  */
