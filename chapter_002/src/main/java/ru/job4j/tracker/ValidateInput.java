@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 /**
  * Класс с проверкой ввода информации.
- * Композиция.
+ * Наследование.
  *
  * @author Evgeny Novoselov
  */
