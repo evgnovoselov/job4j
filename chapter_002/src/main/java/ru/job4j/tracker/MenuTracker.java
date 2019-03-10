@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Класс реализует меню трекера.
- * Композиция.
+ * Агрегация.
  *
  * @author Evgeny Novoselov
  */
