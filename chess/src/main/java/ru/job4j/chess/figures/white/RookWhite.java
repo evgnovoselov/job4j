@@ -1,17 +1,17 @@
-package ru.job4j.chess.firuges.white;
+package ru.job4j.chess.figures.white;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
 
 /**
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
  * @since 0.1
  */
-public class QeenWhite implements Figure {
+public class RookWhite implements Figure {
     private final Cell position;
 
-    public QeenWhite(final Cell position) {
+    public RookWhite(final Cell position) {
         this.position = position;
     }
 
@@ -27,6 +27,6 @@ public class QeenWhite implements Figure {
 
     @Override
     public Figure copy(Cell dest) {
-        return new QeenWhite(dest);
+        return new RookWhite(dest);
     }
 }
