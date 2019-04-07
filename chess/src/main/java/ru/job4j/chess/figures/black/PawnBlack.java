@@ -1,12 +1,14 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
+ * Реализация логики темной пешки.
+ *
  * @author Petr Arsentev (parsentev@yandex.ru)
- * @version $Id$
- * @since 0.1
+ * @author Evgeny Novoselov
  */
 public class PawnBlack implements Figure {
     private final Cell position;
@@ -22,11 +24,10 @@ public class PawnBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        Cell[] steps = new Cell[0];
-        if (source.y == dest.y + 1 && source.x == dest.x) {
-            steps = new Cell[]{dest};
+        if (source.y != dest.y + 1 || source.x != dest.x) {
+            throw new ImpossibleMoveException();
         }
-        return steps;
+        return new Cell[]{dest};
     }
 
     @Override

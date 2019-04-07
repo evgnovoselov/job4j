@@ -1,12 +1,14 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
+ * Реализация логики темного короля.
+ *
  * @author Petr Arsentev (parsentev@yandex.ru)
- * @version $Id$
- * @since 0.1
+ * @author Evgeny Novoselov
  */
 public class KingBlack implements Figure {
     private final Cell position;
@@ -22,6 +24,9 @@ public class KingBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
+        if (1 < Math.abs(dest.x - source.x) || 1 < Math.abs(dest.y - source.y)) {
+            throw new ImpossibleMoveException();
+        }
         return new Cell[]{dest};
     }
 

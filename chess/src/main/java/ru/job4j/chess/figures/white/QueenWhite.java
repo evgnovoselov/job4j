@@ -1,19 +1,19 @@
-package ru.job4j.chess.figures.black;
+package ru.job4j.chess.figures.white;
 
 import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 /**
- * Реализация логики темной ладьи.
+ * Реализация логики светлого ферзя.
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @author Evgeny Novoselov
  */
-public class RookBlack implements Figure {
+public class QueenWhite implements Figure {
     private final Cell position;
 
-    public RookBlack(final Cell position) {
+    public QueenWhite(final Cell position) {
         this.position = position;
     }
 
@@ -24,7 +24,8 @@ public class RookBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        if (Math.abs(dest.x - source.x) != 0 && Math.abs(dest.y - source.y) != 0) {
+        if ((Math.abs(dest.x - source.x) != 0 && Math.abs(dest.y - source.y) != 0)
+                && (Math.abs(dest.x - source.x) != Math.abs(dest.y - source.y))) {
             throw new ImpossibleMoveException();
         }
         int sizeSteps = Math.abs(dest.x - source.x) > 0 ? Math.abs(dest.x - source.x) : Math.abs(dest.y - source.y);
@@ -62,6 +63,6 @@ public class RookBlack implements Figure {
 
     @Override
     public Figure copy(Cell dest) {
-        return new RookBlack(dest);
+        return new QueenWhite(dest);
     }
 }
