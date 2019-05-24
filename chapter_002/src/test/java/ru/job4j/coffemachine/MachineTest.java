@@ -40,6 +40,6 @@ public class MachineTest {
      */
     @Test(expected = NeedMoreMoneyException.class)
     public void whenBuyCoffeeFor70NeedChanges50ThenGetException() throws NeedMoreMoneyException {
-        assertThat(Machine.changes(50, 70), is(true));
+        Machine.changes(50, 70);
     }
 }
