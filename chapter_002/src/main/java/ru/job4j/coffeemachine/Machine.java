@@ -37,8 +37,8 @@ public class Machine {
             }
         }
         int[] changes = new int[changeCoins.size()];
-        for (int i=0;i<changeCoins.size();i++){
-            changes[i]=changeCoins.get(i);
+        for (int i = 0; i < changeCoins.size(); i++) {
+            changes[i] = changeCoins.get(i);
         }
         return changes;
     }
