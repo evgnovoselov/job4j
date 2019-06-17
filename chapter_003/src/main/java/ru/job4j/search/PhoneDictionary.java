@@ -30,19 +30,11 @@ public class PhoneDictionary {
         List<Person> result = new ArrayList<>();
         String keyLowerCase = key.toLowerCase();
         for (Person person : persons) {
-            if (person.getName().toLowerCase().contains(keyLowerCase)) {
-                result.add(person);
-                continue;
-            }
-            if (person.getSurname().toLowerCase().contains(keyLowerCase)) {
-                result.add(person);
-                continue;
-            }
-            if (person.getPhone().toLowerCase().contains(keyLowerCase)) {
-                result.add(person);
-                continue;
-            }
-            if (person.getAddress().toLowerCase().contains(keyLowerCase)) {
+            if (person.getName().toLowerCase().contains(keyLowerCase)
+                    || person.getSurname().toLowerCase().contains(keyLowerCase)
+                    || person.getPhone().toLowerCase().contains(keyLowerCase)
+                    || person.getAddress().toLowerCase().contains(keyLowerCase)
+            ) {
                 result.add(person);
             }
         }
