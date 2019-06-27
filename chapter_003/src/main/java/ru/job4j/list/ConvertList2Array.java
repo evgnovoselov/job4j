@@ -16,7 +16,18 @@ public class ConvertList2Array {
      * @return двумерный массив равномерно разбимтый на количество строк.
      */
     public int[][] toArray(List<Integer> list, int rows) {
-        // TODO result massive.
-        return new int[0][0];
+        int cells = (int) Math.ceil(((double) list.size() + 1) / rows);
+        int[][] array = new int[rows][cells];
+        int row = 0;
+        int cell = 0;
+        for (Integer num : list) {
+            array[row][cell] = num;
+            cell++;
+            if (cell >= array[row].length) {
+                row++;
+                cell = 0;
+            }
+        }
+        return array;
     }
 }
