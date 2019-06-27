@@ -17,7 +17,7 @@ public class ConvertList2ArrayTest {
      * Проверка метода конвертации коллекции List в равномерно распределенный двухмерный массив.
      */
     @Test
-    public void when7ElementsThen9() {
+    public void when7ElementsAnd3RowsThen9() {
         ConvertList2Array list = new ConvertList2Array();
         int[][] result = list.toArray(
                 Arrays.asList(1, 2, 3, 4, 5, 6, 7),
@@ -30,4 +30,21 @@ public class ConvertList2ArrayTest {
         };
         assertThat(result, is(expect));
     }
+
+    /**
+     * Проверка метода конвертации коллекции List в равномерно распределенный двухмерный массив.
+     */
+    @Test
+    public void when7ElementsAnd1RowsThen1() {
+        ConvertList2Array list = new ConvertList2Array();
+        int[][] result = list.toArray(
+                Arrays.asList(1, 2, 3, 4, 5, 6, 7),
+                1
+        );
+        int[][] expect = {
+                {1, 2, 3, 4, 5, 6, 7},
+        };
+        assertThat(result, is(expect));
+    }
+
 }
