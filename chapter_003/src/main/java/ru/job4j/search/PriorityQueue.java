@@ -1,6 +1,7 @@
 package ru.job4j.search;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Класс агрегирует объекты задач по приоритету.
@@ -19,18 +20,26 @@ public class PriorityQueue {
      */
     public void put(Task task) {
         boolean isPut = false;
-        for (int i = 0; i < tasks.size(); i++) {
-            if (task.getPriority() < tasks.get(i).getPriority()) {
-                tasks.add(i, task);
+        ListIterator<Task> taskListIterator = tasks.listIterator();
+        while (taskListIterator.hasNext()) {
+            Task nextTask = taskListIterator.next();
+            if (task.getPriority() <= nextTask.getPriority()) {
+                taskListIterator.previous();
+                taskListIterator.add(task);
                 isPut = true;
                 break;
             }
         }
         if (!isPut) {
-            tasks.add(task);
+            taskListIterator.add(task);
         }
     }
 
+    /**
+     * Метод возвращает задачу и удаляет её из коллекции.
+     *
+     * @return задачу.
+     */
     public Task take() {
         return this.tasks.poll();
     }
