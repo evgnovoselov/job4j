@@ -35,9 +35,19 @@ public class PrimeNumberTest {
      * Тестирование нахождения количество простых чисел с 1 до 2.
      */
     @Test
-    public void when1() {
+    public void when2() {
         PrimeNumber prime = new PrimeNumber();
         int count = prime.calc(2);
         assertThat(count, is(1));
+    }
+
+    /**
+     * Тестирование нахождения количество простых чисел с 1 до 1.
+     */
+    @Test
+    public void when1() {
+        PrimeNumber prime = new PrimeNumber();
+        int count = prime.calc(1);
+        assertThat(count, is(0));
     }
 }
