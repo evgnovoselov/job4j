@@ -17,6 +17,11 @@ public class Mortgage {
      */
     public int year(int amount, int monthly, double percent) {
         int year = 0;
-        return 0;
+        double credit = amount;
+        while (credit > 0) {
+            year++;
+            credit = (credit + credit * percent / 100) - monthly * 12;
+        }
+        return year;
     }
 }
