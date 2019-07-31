@@ -11,9 +11,6 @@ public class User {
     private String name;
     private String city;
 
-    public User() {
-    }
-
     public User(String name, String city) {
         this.name = name;
         this.city = city;
