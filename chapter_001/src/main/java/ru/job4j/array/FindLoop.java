@@ -59,6 +59,18 @@ public class FindLoop {
      * @return Отсортированный массив по возростанию.
      */
     public int[] sort(int[] data) {
-        return new int[]{1, 2, 3};
+        int[] result = data.clone();
+        for (int i = 0; i < result.length; i++) {
+            int oldElement = result[i];
+            int min = result[i];
+            for (int j = i; j < result.length; j++) {
+                if (min > result[j]) {
+                    min = result[j];
+                }
+            }
+            result[indexOf(result, min, i, result.length)] = oldElement;
+            result[i] = min;
+        }
+        return result;
     }
 }

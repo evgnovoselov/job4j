@@ -86,10 +86,10 @@ public class FindLoopTest {
      * Сортировака с 5 числами.
      */
     @Test
-    public void whenSort5() {
+    public void whenSort5Elements() {
         FindLoop find = new FindLoop();
         int[] input = new int[]{3, 4, 1, 2, 5};
-        int result[] = find.sort(input);
+        int[] result = find.sort(input);
         int[] expect = new int[]{1, 2, 3, 4, 5};
         assertThat(result, is(expect));
     }
@@ -98,10 +98,10 @@ public class FindLoopTest {
      * Сортировака с 3 числами.
      */
     @Test
-    public void whenSort3() {
+    public void whenSort3Elements() {
         FindLoop find = new FindLoop();
         int[] input = new int[]{3, 4, 1};
-        int result[] = find.sort(input);
+        int[] result = find.sort(input);
         int[] expect = new int[]{1, 3, 4};
         assertThat(result, is(expect));
     }
