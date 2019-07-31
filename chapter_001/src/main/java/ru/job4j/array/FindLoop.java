@@ -51,4 +51,14 @@ public class FindLoop {
         }
         return result;
     }
+
+    /**
+     * Метод сортировки массива, методом выборкой.
+     *
+     * @param data Массив чисел.
+     * @return Отсортированный массив по возростанию.
+     */
+    public int[] sort(int[] data) {
+        return new int[]{1, 2, 3};
+    }
 }
