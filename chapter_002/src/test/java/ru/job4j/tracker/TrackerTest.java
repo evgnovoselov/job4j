@@ -99,7 +99,10 @@ public class TrackerTest {
         for (Item item : items) {
             tracker.add(item);
         }
-        Item[] expectedNames = {items[0], items[2], items[4]};
+        List<Item> expectedNames = new ArrayList<>();
+        expectedNames.add(items[0]);
+        expectedNames.add(items[2]);
+        expectedNames.add(items[4]);
         assertThat(tracker.findByName("test"), is(expectedNames));
     }
 
