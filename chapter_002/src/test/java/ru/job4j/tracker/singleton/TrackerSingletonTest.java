@@ -4,6 +4,10 @@ import org.junit.Test;
 import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Tracker;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -22,6 +26,10 @@ public class TrackerSingletonTest {
             new Item("Item 3", "Item 3 Description"),
             new Item("Item 4", "Item 4 Description"),
     };
+    /**
+     * Коллекция используется для проверки.
+     */
+    private List<Item> expected = new ArrayList<>(Arrays.asList(items));
 
     /**
      * Метод тестирует первый вариант singleton.
@@ -33,7 +41,7 @@ public class TrackerSingletonTest {
         Tracker tracker = TrackerSingleton1.INSTANCE.getTracker();
         Tracker otherTracker = TrackerSingleton1.INSTANCE.getTracker();
         addItemsToTracker(tracker, otherTracker);
-        assertThat(tracker.findAll(), is(items));
+        assertThat(tracker.findAll(), is(expected));
     }
 
     /**
@@ -46,7 +54,7 @@ public class TrackerSingletonTest {
         Tracker tracker = TrackerSingleton2.getInstance().getTracker();
         Tracker otherTracker = TrackerSingleton2.getInstance().getTracker();
         addItemsToTracker(tracker, otherTracker);
-        assertThat(tracker.findAll(), is(items));
+        assertThat(tracker.findAll(), is(expected));
     }
 
     /**
@@ -59,7 +67,7 @@ public class TrackerSingletonTest {
         Tracker tracker = TrackerSingleton3.getInstance().getTracker();
         Tracker otherTracker = TrackerSingleton3.getInstance().getTracker();
         addItemsToTracker(tracker, otherTracker);
-        assertThat(tracker.findAll(), is(items));
+        assertThat(tracker.findAll(), is(expected));
     }
 
     /**
@@ -72,7 +80,7 @@ public class TrackerSingletonTest {
         Tracker tracker = TrackerSingleton4.getInstance().getTracker();
         Tracker otherTracker = TrackerSingleton4.getInstance().getTracker();
         addItemsToTracker(tracker, otherTracker);
-        assertThat(tracker.findAll(), is(items));
+        assertThat(tracker.findAll(), is(expected));
     }
 
     /**

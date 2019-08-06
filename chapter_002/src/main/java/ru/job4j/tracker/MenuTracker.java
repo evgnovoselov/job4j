@@ -103,9 +103,9 @@ public class MenuTracker {
      *
      * @param items Массив заявок
      */
-    private void printItems(Item[] items) {
+    private void printItems(List<Item> items) {
         System.out.println("--------------------------------");
-        System.out.println("Найдено заявок: " + items.length);
+        System.out.println("Найдено заявок: " + items.size());
         for (Item item : items) {
             System.out.println(item);
         }
@@ -197,7 +197,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("--------------------------------");
             System.out.println("Вывод всех заявок:");
-            Item[] items = tracker.findAll();
+            List<Item> items = tracker.findAll();
             printItems(items);
         }
     }
@@ -292,7 +292,9 @@ public class MenuTracker {
             if (item == null) {
                 return;
             }
-            printItems(new Item[]{item});
+            List<Item> items = new ArrayList<>();
+            items.add(item);
+            printItems(items);
         }
     }
 
@@ -315,7 +317,7 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("--------------------------------");
             System.out.println("Поиск заявок по имени:");
-            Item[] items = tracker.findByName(input.ask("Введите имя заявки: "));
+            List<Item> items = tracker.findByName(input.ask("Введите имя заявки: "));
             printItems(items);
         }
     }
