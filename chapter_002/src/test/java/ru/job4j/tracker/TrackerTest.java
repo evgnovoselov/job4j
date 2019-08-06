@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -54,7 +57,10 @@ public class TrackerTest {
         }
         tracker.delete(items[1].getId()); // delete test2
         tracker.delete(items[3].getId()); // delete test4
-        Item[] expected = {items[0], items[2], items[4]};
+        List<Item> expected = new ArrayList<>();
+        expected.add(items[0]);
+        expected.add(items[2]);
+        expected.add(items[4]);
         assertThat(tracker.findAll(), is(expected));
     }
 

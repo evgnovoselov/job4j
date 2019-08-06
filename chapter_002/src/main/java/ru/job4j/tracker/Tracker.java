@@ -18,19 +18,11 @@ public class Tracker {
     private final List<Item> items = new ArrayList<>();
 
     /**
-     * Указатель ячейки для новой заявки.
-     */
-    private int position = 0;
-
-    /**
      * Метод реализаущий добавление заявки в хранилище.
      *
      * @param item Новая заявка
      */
     public Item add(Item item) {
-        //TODO почистить
-        /*item.setId(this.generateId());
-        this.items[this.position++] = item;*/
         item.setId(this.generateId());
         items.add(item);
         return item;
@@ -54,15 +46,14 @@ public class Tracker {
      * @return Успешно ли заявка заменена
      */
     public boolean replace(String id, Item item) {
-        //TODO почистить
         boolean result = false;
-        /*for (int i = 0; i < position; i++) {
-            if (id.equals(this.items[i].getId())) {
-                this.items[i] = item;
+        for (int i = 0; i < this.items.size(); i++) {
+            if (id.equals(this.items.get(i).getId())) {
+                this.items.set(i, item);
                 result = true;
                 break;
             }
-        }*/
+        }
         return result;
     }
 
@@ -73,18 +64,14 @@ public class Tracker {
      * @return Успешно ли заявка удалена
      */
     public boolean delete(String id) {
-        //TODO почистить
         boolean result = false;
-        /*if (this.position > 0) {
-            for (int i = 0; i < this.position; i++) {
-                if (id.equals(this.items[i].getId())) {
-                    System.arraycopy(this.items, i + 1, this.items, i, this.items.length - 1 - i);
-                    this.items[--this.position] = null;
-                    result = true;
-                    break;
-                }
+        for (int i = 0; i < this.items.size(); i++) {
+            if (id.equals(this.items.get(i).getId())) {
+                this.items.remove(i);
+                result = true;
+                break;
             }
-        }*/
+        }
         return result;
     }
 
@@ -94,8 +81,6 @@ public class Tracker {
      * @return Возвращает все заявки в хранище
      */
     public List<Item> findAll() {
-        //TODO почистить
-        //return Arrays.copyOf(this.items, this.position);
         return items;
     }
 
@@ -125,14 +110,13 @@ public class Tracker {
      * @return Возвращает заявку из хранища
      */
     public Item findById(String id) {
-        //TODO почистить
         Item result = null;
-        /*for (int i = 0; i < position; i++) {
-            if (id.equals(this.items[i].getId())) {
-                result = this.items[i];
+        for (int i = 0; i < this.items.size(); i++) {
+            if (id.equals(this.items.get(i).getId())) {
+                result = this.items.get(i);
                 break;
             }
-        }*/
+        }
         return result;
     }
 }
