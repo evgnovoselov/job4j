@@ -1,8 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Класс хранилище заявок.
@@ -64,9 +62,11 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < this.items.size(); i++) {
-            if (id.equals(this.items.get(i).getId())) {
-                this.items.remove(i);
+        Iterator<Item> itemIterator = this.items.iterator();
+        while (itemIterator.hasNext()) {
+            Item item = itemIterator.next();
+            if (id.equals(item.getId())) {
+                itemIterator.remove();
                 result = true;
                 break;
             }
