@@ -44,9 +44,11 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.items.size(); i++) {
-            if (id.equals(this.items.get(i).getId())) {
-                this.items.set(i, item);
+        ListIterator<Item> itemListIterator = this.items.listIterator();
+        while (itemListIterator.hasNext()) {
+            Item itemNext = itemListIterator.next();
+            if (id.equals(itemNext.getId())) {
+                itemListIterator.set(item);
                 result = true;
                 break;
             }
