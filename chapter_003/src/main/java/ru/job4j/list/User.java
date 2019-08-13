@@ -7,14 +7,16 @@ import java.util.Objects;
  *
  * @author Evgeny Novoselov
  */
-public class User {
+public class User implements Comparable<User> {
     private static int counter;
     private final int id = counter++;
     private String name;
     private String city;
+    private int age;
 
-    public User(String name, String city) {
+    public User(String name, int age, String city) {
         this.name = name;
+        this.age = age;
         this.city = city;
     }
 
@@ -38,11 +40,20 @@ public class User {
         this.city = city;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "User{"
                 + "id=" + id
                 + ", name='" + name + '\''
+                + ", age='" + age + '\''
                 + ", city='" + city + '\''
                 + '}';
     }
@@ -58,11 +69,17 @@ public class User {
         User user = (User) o;
         return id == user.id
                 && Objects.equals(name, user.name)
+                && Objects.equals(age, user.age)
                 && Objects.equals(city, user.city);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, city);
+        return Objects.hash(id, name, age, city);
+    }
+
+    @Override
+    public int compareTo(User user) {
+        return Integer.compare(this.age, user.age);
     }
 }

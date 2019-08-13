@@ -21,10 +21,10 @@ public class UserConvertTest {
     @Test
     public void whenConvertUserListToMapThenMapUsers() {
         List<User> users = new ArrayList<>();
-        users.add(new User("Evgeny", "Moscow"));
-        users.add(new User("Petr", "Bryansk"));
-        users.add(new User("Andrey", "Don't know"));
-        users.add(new User("Evgeny", "Moscow"));
+        users.add(new User("Evgeny", 34, "Moscow"));
+        users.add(new User("Petr", 33, "Bryansk"));
+        users.add(new User("Andrey", 32, "Don't know"));
+        users.add(new User("Evgeny", 31, "Moscow"));
         HashMap<Integer, User> result = new HashMap<>();
         result.put(users.get(0).getId(), users.get(0));
         result.put(users.get(1).getId(), users.get(1));
