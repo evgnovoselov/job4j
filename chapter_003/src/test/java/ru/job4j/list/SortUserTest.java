@@ -32,4 +32,41 @@ public class SortUserTest {
         expected.add(users.get(0));
         assertThat(new SortUser().sort(users).toString(), is(expected.toString()));
     }
+
+    /**
+     * Todo name and comments
+     */
+    @Test
+    public void whenSortUsersNameLengthThenSortedUsers() {
+        List<User> users = new ArrayList<>();
+        users.add(new User("Сергей", 25, "Москва"));
+        users.add(new User("Иван", 30, "Москва"));
+        users.add(new User("Сергей", 20, "Москва"));
+        users.add(new User("Иван", 25, "Москва"));
+        List<User> expected = new ArrayList<>();
+        expected.add(users.get(3));
+        expected.add(users.get(1));
+        expected.add(users.get(2));
+        expected.add(users.get(0));
+        assertThat(new SortUser().sortNameLength(users).toString(), is(expected.toString()));
+    }
+
+    /**
+     * Todo name and comments
+     */
+    @Test
+    public void whenSortUsersByAllFieldsThenSortedUsers() {
+        List<User> users = new ArrayList<>();
+        users.add(new User("Сергей", 25, "Москва"));
+        users.add(new User("Иван", 30, "Москва"));
+        users.add(new User("Сергей", 20, "Москва"));
+        users.add(new User("Иван", 25, "Москва"));
+        List<User> expected = new ArrayList<>();
+        expected.add(users.get(3));
+        expected.add(users.get(1));
+        expected.add(users.get(2));
+        expected.add(users.get(0));
+        assertThat(new SortUser().sortByAllFields(users).toString(), is(expected.toString()));
+    }
+
 }
