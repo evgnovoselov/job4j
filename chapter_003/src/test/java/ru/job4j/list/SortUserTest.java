@@ -19,7 +19,7 @@ public class SortUserTest {
      * Метод проверяет сортировку пользователей.
      */
     @Test
-    public void whenConvertUserListToMapThenMapUsers() {
+    public void whenSortUserListToSetThenSortedSet() {
         List<User> users = new ArrayList<>();
         users.add(new User("Evgeny", 34, "Moscow"));
         users.add(new User("Petr", 33, "Bryansk"));
