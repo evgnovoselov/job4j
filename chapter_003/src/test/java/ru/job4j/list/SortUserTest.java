@@ -34,7 +34,7 @@ public class SortUserTest {
     }
 
     /**
-     * Todo name and comments
+     * Проверка осортированных пользователей по длине имени.
      */
     @Test
     public void whenSortUsersNameLengthThenSortedUsers() {
@@ -44,15 +44,15 @@ public class SortUserTest {
         users.add(new User("Сергей", 20, "Москва"));
         users.add(new User("Иван", 25, "Москва"));
         List<User> expected = new ArrayList<>();
-        expected.add(users.get(3));
         expected.add(users.get(1));
-        expected.add(users.get(2));
+        expected.add(users.get(3));
         expected.add(users.get(0));
+        expected.add(users.get(2));
         assertThat(new SortUser().sortNameLength(users).toString(), is(expected.toString()));
     }
 
     /**
-     * Todo name and comments
+     * Проверка отсортированных пользователей сначало в лексикографическом порядке, потом по возросту.
      */
     @Test
     public void whenSortUsersByAllFieldsThenSortedUsers() {
