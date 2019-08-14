@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/zkod/job4j.svg?branch=master)](https://travis-ci.org/zkod/job4j)
+[![codecov](https://codecov.io/gh/zkod/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/zkod/job4j)
+
 # job4j Репозиторий обучения Евгения Новоселова
 Let's study java!
 
