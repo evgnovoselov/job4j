@@ -32,4 +32,41 @@ public class SortUserTest {
         expected.add(users.get(0));
         assertThat(new SortUser().sort(users).toString(), is(expected.toString()));
     }
+
+    /**
+     * Проверка осортированных пользователей по длине имени.
+     */
+    @Test
+    public void whenSortUsersNameLengthThenSortedUsers() {
+        List<User> users = new ArrayList<>();
+        users.add(new User("Сергей", 25, "Москва"));
+        users.add(new User("Иван", 30, "Москва"));
+        users.add(new User("Сергей", 20, "Москва"));
+        users.add(new User("Иван", 25, "Москва"));
+        List<User> expected = new ArrayList<>();
+        expected.add(users.get(1));
+        expected.add(users.get(3));
+        expected.add(users.get(0));
+        expected.add(users.get(2));
+        assertThat(new SortUser().sortNameLength(users).toString(), is(expected.toString()));
+    }
+
+    /**
+     * Проверка отсортированных пользователей сначало в лексикографическом порядке, потом по возросту.
+     */
+    @Test
+    public void whenSortUsersByAllFieldsThenSortedUsers() {
+        List<User> users = new ArrayList<>();
+        users.add(new User("Сергей", 25, "Москва"));
+        users.add(new User("Иван", 30, "Москва"));
+        users.add(new User("Сергей", 20, "Москва"));
+        users.add(new User("Иван", 25, "Москва"));
+        List<User> expected = new ArrayList<>();
+        expected.add(users.get(3));
+        expected.add(users.get(1));
+        expected.add(users.get(2));
+        expected.add(users.get(0));
+        assertThat(new SortUser().sortByAllFields(users).toString(), is(expected.toString()));
+    }
+
 }
