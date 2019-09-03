@@ -1,7 +1,7 @@
 package ru.job4j.bank;
 
 /**
- * TODO Add comments
+ * Тестирование счета в банке.
  *
  * @author Evgeny Novoselov
  */

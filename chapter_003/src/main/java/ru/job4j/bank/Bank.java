@@ -1,7 +1,7 @@
 package ru.job4j.bank;
 
 /**
- * TODO Add comments
+ * Банк клиентов с ихними счетами.
  *
  * @author Evgeny Novoselov
  */
