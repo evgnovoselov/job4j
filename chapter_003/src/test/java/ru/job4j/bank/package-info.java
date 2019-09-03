@@ -1,5 +1,5 @@
 /**
- * TODO add comments
+ * Тестирование банка.
  *
  * @author Evgeny Novoselov
  */

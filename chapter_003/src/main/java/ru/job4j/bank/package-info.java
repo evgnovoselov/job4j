@@ -1,5 +1,5 @@
 /**
- * TODO add comments
+ * Реализация банка.
  *
  * @author Evgeny Novoselov
  */
