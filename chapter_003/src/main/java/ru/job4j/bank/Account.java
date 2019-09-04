@@ -8,11 +8,10 @@ import java.util.Objects;
  * @author Evgeny Novoselov
  */
 public class Account {
-    private double value;
+    private double value = 0;
     private String requisites;
 
-    public Account(double value, String requisites) {
-        this.value = value;
+    public Account(String requisites) {
         this.requisites = requisites;
     }
 
