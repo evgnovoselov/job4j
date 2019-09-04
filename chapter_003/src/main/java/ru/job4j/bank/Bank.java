@@ -1,9 +1,6 @@
 package ru.job4j.bank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Банк клиентов с ихними счетами.
@@ -19,6 +16,7 @@ public class Bank {
      * @param user Пользователь.
      */
     public void addUser(User user) {
+        clients.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -27,7 +25,7 @@ public class Bank {
      * @param user Пользователь.
      */
     public void deleteUser(User user) {
-
+        clients.remove(user);
     }
 
     /**
@@ -37,7 +35,11 @@ public class Bank {
      * @param account  Счет пользователя.
      */
     public void addAccountToUser(String passport, Account account) {
-
+        List<Account> accounts = getUserAccounts(passport);
+        int indexAccount = accounts.indexOf(account);
+        if (indexAccount < 0) {
+            accounts.add(account);
+        }
     }
 
     /**
@@ -56,7 +58,13 @@ public class Bank {
      * @return Список счетов пользователя.
      */
     public List<Account> getUserAccounts(String passport) {
-        return new ArrayList<>();
+        List<Account> result = null;
+        for (Map.Entry<User, List<Account>> client : clients.entrySet()) {
+            if (client.getKey().getPassport().equals(passport)) {
+                result = client.getValue();
+            }
+        }
+        return result;
     }
 
     /**
@@ -75,5 +83,4 @@ public class Bank {
                                  double amount) {
         return false;
     }
-
 }
