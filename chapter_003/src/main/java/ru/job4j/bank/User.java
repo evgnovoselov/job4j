@@ -6,4 +6,6 @@ package ru.job4j.bank;
  * @author Evgeny Novoselov
  */
 public class User {
+    private String name;
+    private String passport;
 }
