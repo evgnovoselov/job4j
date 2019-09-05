@@ -49,6 +49,7 @@ public class Bank {
      * @param account  Счет пользователя.
      */
     public void deleteAccountFromUser(String passport, Account account) {
+        getUserAccounts(passport).remove(account);
     }
 
     /**
