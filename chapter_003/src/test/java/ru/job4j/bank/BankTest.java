@@ -56,4 +56,18 @@ public class BankTest {
         List<Account> expected = new ArrayList<>(Collections.singletonList(new Account("1111")));
         assertThat(bank.getUserAccounts("11"), is(expected));
     }
+
+    /**
+     * Тестируем метод для перечисления денег с одного счёта на другой счёт пользователя.
+     */
+    @Test
+    public void whenUserTransferMoneyFromFirstAccountToSecondThenSecondAccountHasMoney() {
+    }
+
+    /**
+     * Тестируем метод для перечисления денег с одного счёта на счёт другого пользователя.
+     */
+    @Test
+    public void whenFromUserAccountTransferMoneyToAccountOtherUserThenAccountOtherUserHasMoney() {
+    }
 }
