@@ -65,9 +65,23 @@ public class BankTest {
     }
 
     /**
+     * Тестируем метод для перечисления денег с одного счёта на котором нехватает денег, на другой счёт пользователя.
+     */
+    @Test
+    public void whenUserTransferMoneyFromFirstAccountToSecondButNotHaveMoneyThenSecondAccountNotHasMoney() {
+    }
+
+    /**
      * Тестируем метод для перечисления денег с одного счёта на счёт другого пользователя.
      */
     @Test
     public void whenFromUserAccountTransferMoneyToAccountOtherUserThenAccountOtherUserHasMoney() {
+    }
+
+    /**
+     * Тестируем метод для перечисления денег с одного счёта на котором не хватает денег, на счёт другого пользователя.
+     */
+    @Test
+    public void whenFromUserAccountTransferMoneyButHisNotHaveMoneyToAccountOtherUserThenAccountOtherUserDoNotHasMoney() {
     }
 }
