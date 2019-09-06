@@ -82,10 +82,27 @@ public class BankTest {
     }
 
     /**
-     * Тестируем метод для перечисления денег с одного счёта на котором нехватает денег, на другой счёт пользователя.
+     * Тестируем метод для перечисления денег с одного счёта на котором не хватает денег, на другой счёт пользователя.
      */
     @Test
     public void whenUserTransferMoneyFromFirstAccountToSecondButNotHaveMoneyThenSecondAccountNotHasMoney() {
+        Bank bank = new Bank();
+        bank.addUser(new User("Evgeny", "11"));
+        bank.addAccountToUser("11", new Account("1111"));
+        bank.getUserAccounts("11").get(0).setValue(300);
+        bank.addAccountToUser("11", new Account("2222"));
+        assertThat(bank.transferMoney(
+                "11", "1111",
+                "11", "2222",
+                450), is(false)
+        );
+        assertThat(new Double[]{
+                bank.getUserAccounts("11").get(0).getValue(),
+                bank.getUserAccounts("11").get(1).getValue(),
+        }, is(new Double[]{
+                300.0,
+                0.0,
+        }));
     }
 
     /**
