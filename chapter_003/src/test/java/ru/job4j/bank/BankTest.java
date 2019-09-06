@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -26,5 +27,18 @@ public class BankTest {
         bank.addAccountToUser("11", new Account("2222"));
         List<Account> expected = new ArrayList<>(Arrays.asList(new Account("1111"), new Account("2222")));
         assertThat(bank.getUserAccounts("11"), is(expected));
+    }
+
+    /**
+     * Тестируем удаление пользователя со счетами.
+     */
+    @Test
+    public void whenDeleteUserWithAccountsThenBankDoNotHasIt() {
+        Bank bank = new Bank();
+        bank.addUser(new User("Evgeny", "11"));
+        bank.addAccountToUser("11", new Account("1111"));
+        bank.addAccountToUser("11", new Account("2222"));
+        bank.deleteUser(new User("Evgeny", "11"));
+        assertThat(bank.getUserAccounts("11"), is(nullValue()));
     }
 }
