@@ -19,7 +19,7 @@ public class BankTest {
      * Тестируем добавления пользователя со счетом.
      */
     @Test
-    public void whenAddUserWithAccountsThenHaveIt() {
+    public void whenAddUserWithAccountsThenBankHasIt() {
         Bank bank = new Bank();
         bank.addUser(new User("Evgeny", "11"));
         bank.addAccountToUser("11", new Account("1111"));
