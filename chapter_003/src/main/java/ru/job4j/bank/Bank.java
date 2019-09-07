@@ -83,15 +83,33 @@ public class Bank {
                                  String destPassport, String destRequisite,
                                  double amount) {
         boolean result = false;
-        List<Account> srcAccounts = getUserAccounts(srcPassport);
-        Account srcAccount = srcAccounts.get(srcAccounts.indexOf(new Account(srcRequisite)));
-        List<Account> destAccounts = getUserAccounts(destPassport);
-        Account destAccount = destAccounts.get(destAccounts.indexOf(new Account(destRequisite)));
-        if (amount > 0 && srcAccount.getValue() >= amount) {
-            srcAccount.setValue(srcAccount.getValue() - amount);
-            destAccount.setValue(destAccount.getValue() + amount);
-            result = true;
+        try {
+            Account srcAccount = getUserAccount(srcPassport, srcRequisite);
+            Account destAccount = getUserAccount(destPassport, destRequisite);
+            if (amount > 0 && srcAccount.getValue() >= amount) {
+                srcAccount.setValue(srcAccount.getValue() - amount);
+                destAccount.setValue(destAccount.getValue() + amount);
+                result = true;
+            }
+        } catch (NotFindAccountException e) {
+            result = false;
         }
         return result;
+    }
+
+    /**
+     * Получение счета по паспорту пользователя и реквизитам счета
+     *
+     * @param passport  Пасспорт пользователя.
+     * @param requisite Реквизиты счета.
+     * @return Возвращаем счет пользователя.
+     */
+    private Account getUserAccount(String passport, String requisite) {
+        List<Account> accounts = getUserAccounts(passport);
+        int indexAccount = accounts.indexOf(new Account(requisite));
+        if (indexAccount < 0) {
+            throw new NotFindAccountException();
+        }
+        return accounts.get(indexAccount);
     }
 }
