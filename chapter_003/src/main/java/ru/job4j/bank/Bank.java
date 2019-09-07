@@ -59,7 +59,7 @@ public class Bank {
      * @return Список счетов пользователя.
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> result = null;
+        List<Account> result = new ArrayList<>();
         for (Map.Entry<User, List<Account>> client : clients.entrySet()) {
             if (client.getKey().getPassport().equals(passport)) {
                 result = client.getValue();

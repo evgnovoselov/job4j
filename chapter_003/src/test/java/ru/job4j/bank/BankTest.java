@@ -40,7 +40,7 @@ public class BankTest {
         bank.addAccountToUser("11", new Account("1111"));
         bank.addAccountToUser("11", new Account("2222"));
         bank.deleteUser(new User("Evgeny", "11"));
-        assertThat(bank.getUserAccounts("11"), is(nullValue()));
+        assertThat(bank.getUserAccounts("11"), is(new ArrayList<>()));
     }
 
     /**
