@@ -6,16 +6,16 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Тестирование организации содержащую департаменты.
+ * Тестирования сортировки департаментов.
  *
  * @author Evgeny Novoselov
  */
-public class OrganizationTest {
+public class DepartmentTest {
     /**
-     * Вносим департаменты в организацию и получаем в порядке возростания.
+     * Сортируем департаменты в порядке возростания.
      */
     @Test
-    public void whenAddDepartmentsThenGetDepartmentsAscSort() {
+    public void whenDepartmentsSortThenGetDepartmentsSort() {
         String[] departments = {
                 "K1\\SK1",
                 "K1\\SK2",
@@ -36,15 +36,15 @@ public class OrganizationTest {
                 "K2\\SK1\\SSK1",
                 "K2\\SK1\\SSK2"
         };
-        Organization organization = new Organization(departments);
-        assertThat(departments, is(expected));
+        String[] departmentsSortAsc = Department.sort(departments);
+        assertThat(departmentsSortAsc, is(expected));
     }
 
     /**
-     * Вносим департаменты в организацию и запрашиваем в порядке убывания.
+     * Сортируем департаменты в порядке убывания.
      */
     @Test
-    public void whenAddDepartmentsAndGetDescSortThenGetDepartmentsDescSort() {
+    public void whenDepartmentsReversSortThenDepartmentsReversSort() {
         String[] departments = {
                 "K1\\SK1",
                 "K1\\SK2",
