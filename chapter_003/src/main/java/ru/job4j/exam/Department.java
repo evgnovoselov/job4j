@@ -68,10 +68,8 @@ public class Department {
     private static Node getDepartmentsNodeFromString(String departmentsStr) {
         Node result = new Node();
         String[] sections = departmentsStr.split("\\W", 2);
-        if (sections.length < 2) {
-            result.department = sections[0];
-        } else {
-            result.department = sections[0];
+        result.department = sections[0];
+        if (sections.length > 1) {
             result.subDepartments.add(getDepartmentsNodeFromString(sections[1]));
         }
         return result;
