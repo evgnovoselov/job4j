@@ -44,7 +44,7 @@ public class DepartmentTest {
      * Сортируем департаменты в порядке убывания.
      */
     @Test
-    public void whenDepartmentsReversSortThenDepartmentsReversSort() {
+    public void whenDepartmentsReversSortThenDepartmentsReverseSort() {
         String[] departments = {
                 "K1\\SK1",
                 "K1\\SK2",
@@ -65,6 +65,7 @@ public class DepartmentTest {
                 "K1\\SK1\\SSK2",
                 "K1\\SK1\\SSK1",
         };
-        assertThat(departments, is(expected));
+        String[] departmentsSortDesc = Department.reverseSort(departments);
+        assertThat(departmentsSortDesc, is(expected));
     }
 }

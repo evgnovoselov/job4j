@@ -1,9 +1,6 @@
 package ru.job4j.exam;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Функции для сортировки справочника подразделений.
@@ -12,12 +9,41 @@ import java.util.TreeSet;
  */
 public class Department {
     /**
+     * Реверсивная сортировка.
+     */
+    private static boolean methodsReverseSort;
+
+    /**
      * Метод сортировки департаментов.
+     * Ставит метод сортировки.
      *
      * @param departmentsArray Массив департаментов.
      * @return Отсортированный по возростанию массив департаментов.
      */
     public static String[] sort(String[] departmentsArray) {
+        methodsReverseSort = false;
+        return doSort(departmentsArray);
+    }
+
+    /**
+     * Метод обратной сортировки департаментов.
+     * Ставит метод сортировки.
+     *
+     * @param departmentsArray Массив департаментов.
+     * @return Отсортированный по убыванию массив департаментов.
+     */
+    public static String[] reverseSort(String[] departmentsArray) {
+        methodsReverseSort = true;
+        return doSort(departmentsArray);
+    }
+
+    /**
+     * Метод осуществляет сортировку
+     *
+     * @param departmentsArray Массив департаментов.
+     * @return Отсортированный массив департаментов.
+     */
+    private static String[] doSort(String[] departmentsArray) {
         Set<Node> departmentsNode = getDepartmentsNode(departmentsArray);
         List<String> departmentsList = getDepartmentsList(departmentsNode);
         String[] departmentsSortArray = new String[departmentsList.size()];
@@ -61,7 +87,7 @@ public class Department {
      * @return Множество отделов с подотделами.
      */
     private static Set<Node> getDepartmentsNode(String[] departmentsArray) {
-        Set<Node> result = new TreeSet<>();
+        Set<Node> result = new TreeSet<>(getSortComporator());
         for (String departmentsStr : departmentsArray) {
             Node node = getDepartmentsNodeFromString(departmentsStr);
             if (!result.add(node)) {
@@ -108,9 +134,23 @@ public class Department {
         return result;
     }
 
+    /**
+     * Возвращаем необходимый компаратор, для сортировки элементов.
+     *
+     * @param <T> Класс реализующий Comparable
+     * @return Возвращаем компоратор.
+     */
+    private static <T extends Comparable> Comparator<T> getSortComporator() {
+        Comparator<T> result = null;
+        if (methodsReverseSort) {
+            result = Collections.reverseOrder();
+        }
+        return result;
+    }
+
     private static class Node implements Comparable<Node> {
         String department = "";
-        Set<Node> subDepartments = new TreeSet<>();
+        Set<Node> subDepartments = new TreeSet<>(getSortComporator());
 
         @Override
         public String toString() {
