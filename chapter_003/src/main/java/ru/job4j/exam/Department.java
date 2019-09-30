@@ -1,5 +1,7 @@
 package ru.job4j.exam;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,8 +19,39 @@ public class Department {
      */
     public static String[] sort(String[] departmentsArray) {
         Set<Node> departmentsNode = getDepartmentsNode(departmentsArray);
-        System.out.println(departmentsNode);
-        return new String[]{"1", "2"};
+        List<String> departmentsList = getDepartmentsList(departmentsNode);
+        String[] departmentsSortArray = new String[departmentsList.size()];
+        return departmentsList.toArray(departmentsSortArray);
+    }
+
+    /**
+     * Возвращаем список департаментов.
+     *
+     * @param departmentsNode Множество департаментов с отделами.
+     * @return Возвращаем строки с отделами.
+     */
+    private static List<String> getDepartmentsList(Set<Node> departmentsNode) {
+        return new ArrayList<>(getDepartmentsListWithPrefix(departmentsNode, ""));
+    }
+
+    /**
+     * Возвращаем список департаментов с использованием префикса.
+     *
+     * @param departmentsNode Множество департаментов с отделами.
+     * @param prefix          Префикс из родительских отделов.
+     * @return Возвращаем список отделов с полной структурой.
+     */
+    private static List<String> getDepartmentsListWithPrefix(Set<Node> departmentsNode, String prefix) {
+        List<String> result = new ArrayList<>();
+        for (Node node : departmentsNode) {
+            StringBuilder prefixBuilder = new StringBuilder(prefix);
+            result.add(prefixBuilder.toString() + node.department);
+            if (!node.subDepartments.isEmpty()) {
+                prefixBuilder.append(node.department).append("\\");
+                result.addAll(getDepartmentsListWithPrefix(node.subDepartments, prefixBuilder.toString()));
+            }
+        }
+        return result;
     }
 
     /**
