@@ -1,9 +1,6 @@
 package ru.job4j.exam;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Функции для сортировки справочника подразделений.
@@ -31,10 +28,28 @@ public class Department {
      * @return Отсортированный по убыванию массив департаментов.
      */
     public static String[] reverseSort(String[] departmentsArray) {
-        Set<String> departments = new TreeSet<>(Arrays.asList(departmentsArray));
+        Set<String> departments = new HashSet<>(Arrays.asList(departmentsArray));
         addMissed(departments);
-        String[] result = new String[departments.size()];
-        return departments.toArray(result);
+        System.out.println(departments);
+        Set<String> reverseDepartments = new TreeSet<>(new Comparator<String>() {
+            @Override
+            public int compare(String s, String t1) {
+                int result = 0;
+                if (s.length() == t1.length()
+                        || s.length() < t1.length() && !s.equals(t1.substring(0, s.length()))) {
+                    result = t1.compareTo(s);
+                }
+                if (s.length() < t1.length() && s.equals(t1.substring(0, s.length()))
+                        || s.length() > t1.length() && t1.equals(s.substring(0, t1.length()))) {
+                    result = s.compareTo(t1);
+                }
+                return result;
+            }
+        });
+        reverseDepartments.addAll(departments);
+        System.out.println(reverseDepartments);
+        String[] result = new String[reverseDepartments.size()];
+        return reverseDepartments.toArray(result);
     }
 
     /**
