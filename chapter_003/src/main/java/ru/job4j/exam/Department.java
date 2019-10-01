@@ -9,157 +9,69 @@ import java.util.*;
  */
 public class Department {
     /**
-     * Реверсивная сортировка.
-     */
-    private static boolean methodsReverseSort;
-
-    /**
      * Метод сортировки департаментов.
-     * Ставит метод сортировки.
      *
      * @param departmentsArray Массив департаментов.
      * @return Отсортированный по возростанию массив департаментов.
      */
     public static String[] sort(String[] departmentsArray) {
-        methodsReverseSort = false;
-        return doSort(departmentsArray);
+        Set<String> departments = new TreeSet<>(Arrays.asList(departmentsArray));
+        addMissed(departments);
+        String[] result = new String[departments.size()];
+        return departments.toArray(result);
     }
 
     /**
      * Метод обратной сортировки департаментов.
-     * Ставит метод сортировки.
      *
      * @param departmentsArray Массив департаментов.
      * @return Отсортированный по убыванию массив департаментов.
      */
     public static String[] reverseSort(String[] departmentsArray) {
-        methodsReverseSort = true;
-        return doSort(departmentsArray);
-    }
-
-    /**
-     * Метод осуществляет сортировку
-     *
-     * @param departmentsArray Массив департаментов.
-     * @return Отсортированный массив департаментов.
-     */
-    private static String[] doSort(String[] departmentsArray) {
-        Set<Node> departmentsNode = getDepartmentsNode(departmentsArray);
-        List<String> departmentsList = getDepartmentsList(departmentsNode);
-        String[] departmentsSortArray = new String[departmentsList.size()];
-        return departmentsList.toArray(departmentsSortArray);
-    }
-
-    /**
-     * Возвращаем список департаментов.
-     *
-     * @param departmentsNode Множество департаментов с отделами.
-     * @return Возвращаем строки с отделами.
-     */
-    private static List<String> getDepartmentsList(Set<Node> departmentsNode) {
-        return new ArrayList<>(getDepartmentsListWithPrefix(departmentsNode, ""));
-    }
-
-    /**
-     * Возвращаем список департаментов с использованием префикса.
-     *
-     * @param departmentsNode Множество департаментов с отделами.
-     * @param prefix          Префикс из родительских отделов.
-     * @return Возвращаем список отделов с полной структурой.
-     */
-    private static List<String> getDepartmentsListWithPrefix(Set<Node> departmentsNode, String prefix) {
-        List<String> result = new ArrayList<>();
-        for (Node node : departmentsNode) {
-            StringBuilder prefixBuilder = new StringBuilder(prefix);
-            result.add(prefixBuilder.toString() + node.department);
-            if (!node.subDepartments.isEmpty()) {
-                prefixBuilder.append(node.department).append("\\");
-                result.addAll(getDepartmentsListWithPrefix(node.subDepartments, prefixBuilder.toString()));
+        Set<String> departments = new HashSet<>(Arrays.asList(departmentsArray));
+        addMissed(departments);
+        System.out.println(departments);
+        Set<String> reverseDepartments = new TreeSet<>(new Comparator<String>() {
+            @Override
+            public int compare(String s, String t1) {
+                int result = 0;
+                if (s.length() == t1.length()
+                        || s.length() < t1.length() && !s.equals(t1.substring(0, s.length()))) {
+                    result = t1.compareTo(s);
+                }
+                if (s.length() < t1.length() && s.equals(t1.substring(0, s.length()))
+                        || s.length() > t1.length() && t1.equals(s.substring(0, t1.length()))) {
+                    result = s.compareTo(t1);
+                }
+                return result;
             }
-        }
-        return result;
+        });
+        reverseDepartments.addAll(departments);
+        System.out.println(reverseDepartments);
+        String[] result = new String[reverseDepartments.size()];
+        return reverseDepartments.toArray(result);
     }
 
     /**
-     * Возврашаем множество отделов с подотделами из массива строк содержащий структуру отделов.
+     * Добавляем недостающие департаменты.
      *
-     * @param departmentsArray Массив строк, содержащий информацио об отделах.
-     * @return Множество отделов с подотделами.
+     * @param departments Множество департаментов.
      */
-    private static Set<Node> getDepartmentsNode(String[] departmentsArray) {
-        Set<Node> result = new TreeSet<>(getSortComporator());
-        for (String departmentsStr : departmentsArray) {
-            Node node = getDepartmentsNodeFromString(departmentsStr);
-            if (!result.add(node)) {
-                for (Node nodeResult : result) {
-                    if (nodeResult.department.equals(node.department)) {
-                        mergeNodes(node, nodeResult);
-                    }
+    private static void addMissed(Set<String> departments) {
+        Set<String> missed = new HashSet<>();
+        for (String department : departments) {
+            String[] sections = department.split("\\W");
+            StringBuilder departmentAdd = new StringBuilder();
+            for (int i = 0; i < sections.length; i++) {
+                departmentAdd.append(sections[i]);
+                if (!departments.contains(departmentAdd.toString())) {
+                    missed.add(departmentAdd.toString());
+                }
+                if (i + 1 < sections.length) {
+                    departmentAdd.append("\\");
                 }
             }
         }
-        return result;
-    }
-
-    /**
-     * Объединяем узлы.
-     *
-     * @param from Откуда сливаем.
-     * @param to   Куда сливаем.
-     */
-    private static void mergeNodes(Node from, Node to) {
-        for (Node nodeTo : to.subDepartments) {
-            for (Node nodeFrom : from.subDepartments) {
-                if (nodeTo.department.equals(nodeFrom.department)) {
-                    mergeNodes(nodeFrom, nodeTo);
-                }
-            }
-        }
-        to.subDepartments.addAll(from.subDepartments);
-    }
-
-    /**
-     * Метод парсит строку на главный отдел со строкой содержащую его структуру.
-     *
-     * @param departmentsStr Строка содержащая информацию об отделе.
-     * @return Возвращаем узел отдела с информацией об подотделах.
-     */
-    private static Node getDepartmentsNodeFromString(String departmentsStr) {
-        Node result = new Node();
-        String[] sections = departmentsStr.split("\\W", 2);
-        result.department = sections[0];
-        if (sections.length > 1) {
-            result.subDepartments.add(getDepartmentsNodeFromString(sections[1]));
-        }
-        return result;
-    }
-
-    /**
-     * Возвращаем необходимый компаратор, для сортировки элементов.
-     *
-     * @param <T> Класс реализующий Comparable
-     * @return Возвращаем компоратор.
-     */
-    private static <T extends Comparable> Comparator<T> getSortComporator() {
-        Comparator<T> result = null;
-        if (methodsReverseSort) {
-            result = Collections.reverseOrder();
-        }
-        return result;
-    }
-
-    private static class Node implements Comparable<Node> {
-        String department = "";
-        Set<Node> subDepartments = new TreeSet<>(getSortComporator());
-
-        @Override
-        public String toString() {
-            return department + "->" + subDepartments;
-        }
-
-        @Override
-        public int compareTo(Node node) {
-            return this.department.compareTo(node.department);
-        }
+        departments.addAll(missed);
     }
 }
