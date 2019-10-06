@@ -14,6 +14,9 @@ import static org.junit.Assert.assertThat;
  * @author Evgeny Novoselov
  */
 public class DiapasonTest {
+    /**
+     * TODO Add comments
+     */
     @Test
     public void whenLinearFunctionThenLinearResults() {
         Diapason function = new Diapason();
