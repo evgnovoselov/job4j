@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.function.Consumer;
+
 /**
  * Класс взаимодействия с пользователем.
  * Композиция.
@@ -18,21 +20,28 @@ public class StartUI {
     private final Tracker tracker;
 
     /**
+     * Функциональный интерфейс для вывода данных.
+     */
+    private final Consumer<String> output;
+
+    /**
      * Конструтор инициализирующий поля.
      *
      * @param input   ввод данных.
      * @param tracker хранилище заявок.
+     * @param output  вывод данных.
      */
-    public StartUI(Input input, Tracker tracker) {
+    public StartUI(Input input, Tracker tracker, Consumer<String> output) {
         this.input = input;
         this.tracker = tracker;
+        this.output = output;
     }
 
     /**
      * Основой цикл программы.
      */
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(this.input, this.tracker, output);
         menu.fillActions();
         int[] range = menu.getKeyActions();
         do {
@@ -47,6 +56,6 @@ public class StartUI {
      * @param args Аргументы запуска программы
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker(), System.out::println).init();
     }
 }
