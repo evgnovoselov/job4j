@@ -2,7 +2,6 @@ package ru.job4j.stream.address;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,19 +15,43 @@ import static org.junit.Assert.assertThat;
  */
 public class ProfilesTest {
     /**
-     * Тестирование получения адресов у клиентов.
+     * Тестирование получения уникальных адресов у клиентов.
      */
     @Test
-    public void whenGetListAddressInProfilesThenListAddress() {
+    public void whenGetListAddressInProfilesThenUniqueListAddress() {
         List<Profile> profiles = Arrays.asList(
                 new Profile(new Address("1", "1", 1, 1)),
+                new Profile(new Address("1", "1", 1, 1)),
                 new Profile(new Address("1", "1", 1, 2)),
-                new Profile(new Address("1", "1", 1, 3)),
-                new Profile(new Address("1", "1", 1, 4)),
-                new Profile(new Address("1", "1", 1, 5))
+                new Profile(new Address("1", "1", 1, 2)),
+                new Profile(new Address("1", "1", 1, 3))
         );
-        List<Address> expected = new ArrayList<>();
-        profiles.forEach(profile -> expected.add(profile.getAddress()));
+        List<Address> expected = Arrays.asList(
+                new Address("1", "1", 1, 1),
+                new Address("1", "1", 1, 2),
+                new Address("1", "1", 1, 3)
+        );
+        List<Address> addresses = Profiles.collect(profiles);
+        assertThat(addresses, is(expected));
+    }
+
+    /**
+     * Тестирование получения отсортированных адресов у клиентов.
+     */
+    @Test
+    public void whenGetListAddressInProfilesThenSortListAddress() {
+        List<Profile> profiles = Arrays.asList(
+                new Profile(new Address("d", "1", 1, 1)),
+                new Profile(new Address("b", "1", 1, 1)),
+                new Profile(new Address("a", "1", 1, 1)),
+                new Profile(new Address("c", "1", 1, 1))
+        );
+        List<Address> expected = Arrays.asList(
+                new Address("a", "1", 1, 1),
+                new Address("b", "1", 1, 1),
+                new Address("c", "1", 1, 1),
+                new Address("d", "1", 1, 1)
+        );
         List<Address> addresses = Profiles.collect(profiles);
         assertThat(addresses, is(expected));
     }
