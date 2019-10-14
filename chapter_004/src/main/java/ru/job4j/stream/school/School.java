@@ -10,9 +10,16 @@ import java.util.stream.Collectors;
  * @author Evgeny Novoselov
  */
 public class School {
+    /**
+     * Фильтруем список учеников по указанному условию predicate.
+     *
+     * @param students список учеников.
+     * @param predict  условие.
+     * @return Возвращаем список учеников.
+     */
     public static List<Student> collect(List<Student> students, Predicate<Student> predict) {
         return students.stream().filter(
-                predict::test
+                predict
         ).collect(Collectors.toList());
     }
 }
