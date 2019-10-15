@@ -19,11 +19,11 @@ public class Profiles {
     public static List<Address> collect(List<Profile> profiles) {
         return profiles.stream().map(
                 Profile::getAddress
-        ).distinct().sorted(new Comparator<Address>() {
+        ).sorted(new Comparator<Address>() {
             @Override
             public int compare(Address address, Address t1) {
                 return address.getCity().compareToIgnoreCase(t1.getCity());
             }
-        }).collect(Collectors.toList());
+        }).distinct().collect(Collectors.toList());
     }
 }
