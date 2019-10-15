@@ -1,5 +1,6 @@
 package ru.job4j.stream.address;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
  */
 public class Profiles {
     /**
-     * Метод получает список адресов у клиентов.
+     * Метод получает уникальных и отсортированных адресов у клиентов.
      *
      * @param profiles клиенты.
      * @return возвращаем список адресов.
@@ -18,6 +19,11 @@ public class Profiles {
     public static List<Address> collect(List<Profile> profiles) {
         return profiles.stream().map(
                 Profile::getAddress
-        ).collect(Collectors.toList());
+        ).distinct().sorted(new Comparator<Address>() {
+            @Override
+            public int compare(Address address, Address t1) {
+                return address.getCity().compareToIgnoreCase(t1.getCity());
+            }
+        }).collect(Collectors.toList());
     }
 }
