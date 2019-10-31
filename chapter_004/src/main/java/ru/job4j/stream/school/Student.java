@@ -8,10 +8,27 @@ import java.util.Objects;
  * @author Evgeny Novoselov
  */
 public class Student {
+    private String surname;
     private int score;
 
+    private static long unknownId = 1;
+
     public Student(int score) {
+        this(String.format("Unknown%s", unknownId), score);
+        unknownId++;
+    }
+
+    public Student(String surname, int score) {
+        this.surname = surname;
         this.score = score;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getScore() {
@@ -25,8 +42,8 @@ public class Student {
     @Override
     public String toString() {
         return "Student{"
-                + "score="
-                + score
+                + "surname='" + surname + '\''
+                + ", score=" + score
                 + '}';
     }
 
@@ -39,11 +56,11 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return score == student.score;
+        return Objects.equals(surname, student.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        return Objects.hash(surname);
     }
 }
