@@ -2,6 +2,10 @@ package ru.job4j.stream.matrix;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,6 +20,15 @@ public class ConvertTest {
      */
     @Test
     public void whenIntegerMatrixConvertToIntegerListThenIntegerList() {
-        assertThat(false, is(true));
+        Integer[][] integers = new Integer[][]{
+                new Integer[]{1, 2},
+                new Integer[]{3, 4},
+        };
+        List<Integer> expected = new ArrayList<>();
+        for (Integer[] integers1 : integers) {
+            expected.addAll(Arrays.asList(integers1));
+        }
+        List<Integer> result = Convert.toList(integers);
+        assertThat(result, is(expected));
     }
 }
