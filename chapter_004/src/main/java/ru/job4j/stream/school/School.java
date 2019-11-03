@@ -31,10 +31,11 @@ public class School {
      * @return Карта учеников с их фамилиями на их объекты.
      */
     public static Map<String, Student> toMap(List<Student> students) {
-        return students.stream().distinct().collect(
+        return students.stream().collect(
                 Collectors.toMap(
                         Student::getSurname,
-                        student -> student
+                        student -> student,
+                        (student, student2) -> student
                 )
         );
     }

@@ -87,7 +87,8 @@ public class SchoolTest {
                 new Student("Surname1", 30),
                 new Student("Surname2", 70),
                 new Student("Surname3", 69),
-                new Student("Surname4", 1)
+                new Student("Surname4", 1),
+                new Student("Surname4", 2)
         );
         Map<String, Student> expected = new HashMap<>();
         for (Student student : students) {
