@@ -1,6 +1,5 @@
 package ru.job4j.stream.school;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -33,9 +32,11 @@ public class School {
      */
     public static Map<String, Student> toMap(List<Student> students) {
         return students.stream().collect(
-                HashMap::new,
-                (map, student) -> map.put(student.getSurname(), student),
-                HashMap::putAll
+                Collectors.toMap(
+                        Student::getSurname,
+                        student -> student,
+                        (student, student2) -> student
+                )
         );
     }
 }
