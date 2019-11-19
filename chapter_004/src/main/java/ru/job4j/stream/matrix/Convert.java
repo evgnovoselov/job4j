@@ -1,6 +1,8 @@
 package ru.job4j.stream.matrix;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Класс преобразования.
@@ -15,6 +17,6 @@ public class Convert {
      * @return список чисел.
      */
     public static List<Integer> toList(Integer[][] integers) {
-        return null;
+        return Stream.of(integers).flatMap(Stream::of).collect(Collectors.toList());
     }
 }

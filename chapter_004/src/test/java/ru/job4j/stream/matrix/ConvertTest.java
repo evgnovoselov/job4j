@@ -24,10 +24,7 @@ public class ConvertTest {
                 new Integer[]{1, 2},
                 new Integer[]{3, 4},
         };
-        List<Integer> expected = new ArrayList<>();
-        for (Integer[] integers1 : integers) {
-            expected.addAll(Arrays.asList(integers1));
-        }
+        List<Integer> expected = Arrays.asList(1, 2, 3, 4);
         List<Integer> result = Convert.toList(integers);
         assertThat(result, is(expected));
     }
