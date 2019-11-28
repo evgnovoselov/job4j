@@ -84,16 +84,14 @@ public class Bank {
                                  String destPassport, String destRequisite,
                                  double amount) {
         boolean result = false;
-        try {
-            Account srcAccount = getUserAccount(srcPassport, srcRequisite);
-            Account destAccount = getUserAccount(destPassport, destRequisite);
-            if (amount > 0 && srcAccount.getValue() >= amount) {
-                srcAccount.setValue(srcAccount.getValue() - amount);
-                destAccount.setValue(destAccount.getValue() + amount);
-                result = true;
-            }
-        } catch (NotFindAccountException e) {
-            result = false;
+        Account srcAccount = getUserAccount(srcPassport, srcRequisite);
+        Account destAccount = getUserAccount(destPassport, destRequisite);
+        if ((srcAccount != null || destAccount != null)
+                && amount > 0
+                && srcAccount.getValue() >= amount) {
+            srcAccount.setValue(srcAccount.getValue() - amount);
+            destAccount.setValue(destAccount.getValue() + amount);
+            result = true;
         }
         return result;
     }
@@ -106,11 +104,8 @@ public class Bank {
      * @return Возвращаем счет пользователя.
      */
     private Account getUserAccount(String passport, String requisite) {
-        List<Account> accounts = getUserAccounts(passport);
-        int indexAccount = accounts.indexOf(new Account(requisite));
-        if (indexAccount < 0) {
-            throw new NotFindAccountException();
-        }
-        return accounts.get(indexAccount);
+        return getUserAccounts(passport).stream()
+                .filter(acc -> acc.getRequisites().equals(requisite))
+                .findFirst().orElse(null);
     }
 }
