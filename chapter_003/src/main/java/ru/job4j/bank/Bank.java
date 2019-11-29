@@ -59,14 +59,11 @@ public class Bank {
      * @return Список счетов пользователя.
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> accounts = new ArrayList<>();
-        Optional<Map.Entry<User, List<Account>>> client = clients.entrySet().stream()
-                .filter(userListEntry -> userListEntry.getKey().getPassport().equals(passport))
-                .limit(1).findFirst();
-        if (client.isPresent()) {
-            accounts = client.get().getValue();
-        }
-        return accounts;
+        return clients.entrySet().stream()
+                .filter(e -> e.getKey().getPassport().equals(passport))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse(new ArrayList<>());
     }
 
     /**
@@ -86,11 +83,8 @@ public class Bank {
         boolean result = false;
         Account srcAccount = getUserAccount(srcPassport, srcRequisite);
         Account destAccount = getUserAccount(destPassport, destRequisite);
-        if ((srcAccount != null || destAccount != null)
-                && amount > 0
-                && srcAccount.getValue() >= amount) {
-            srcAccount.setValue(srcAccount.getValue() - amount);
-            destAccount.setValue(destAccount.getValue() + amount);
+        if ((srcAccount != null && destAccount != null)
+                && srcAccount.transferMoney(destAccount, amount)) {
             result = true;
         }
         return result;
@@ -106,6 +100,7 @@ public class Bank {
     private Account getUserAccount(String passport, String requisite) {
         return getUserAccounts(passport).stream()
                 .filter(acc -> acc.getRequisites().equals(requisite))
-                .findFirst().orElse(null);
+                .findFirst()
+                .orElse(null);
     }
 }

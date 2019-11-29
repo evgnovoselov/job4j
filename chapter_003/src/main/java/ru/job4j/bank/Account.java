@@ -47,4 +47,21 @@ public class Account {
     public int hashCode() {
         return Objects.hash(requisites);
     }
+
+    /**
+     * Переводит деньги с счета на счет.
+     *
+     * @param destAcc Куда нужно перевести деньги.
+     * @param amount  Сумма списания.
+     * @return Результат операции.
+     */
+    public boolean transferMoney(Account destAcc, double amount) {
+        boolean result = false;
+        if (amount > 0 && value >= amount) {
+            value -= amount;
+            destAcc.value += amount;
+            result = true;
+        }
+        return result;
+    }
 }
