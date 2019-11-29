@@ -59,14 +59,11 @@ public class Bank {
      * @return Список счетов пользователя.
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> accounts = new ArrayList<>();
-        Optional<Map.Entry<User, List<Account>>> client = clients.entrySet().stream()
-                .filter(userListEntry -> userListEntry.getKey().getPassport().equals(passport))
-                .limit(1).findFirst();
-        if (client.isPresent()) {
-            accounts = client.get().getValue();
-        }
-        return accounts;
+        return clients.entrySet().stream()
+                .filter(e -> e.getKey().getPassport().equals(passport))
+                .findFirst()
+                .map(Map.Entry::getValue)
+                .orElse(new ArrayList<>());
     }
 
     /**
