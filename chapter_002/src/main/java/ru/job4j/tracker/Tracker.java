@@ -105,13 +105,10 @@ public class Tracker {
      * @return Возвращает заявку из хранища
      */
     public Item findById(String id) {
-        Item result = null;
-        for (Item item : this.items) {
-            if (id.equals(item.getId())) {
-                result = item;
-                break;
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(e -> e.getId().equals(id))
+                .limit(1)
+                .findFirst()
+                .orElse(null);
     }
 }
