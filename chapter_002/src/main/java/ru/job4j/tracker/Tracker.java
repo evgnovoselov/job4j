@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Класс хранилище заявок.
@@ -92,13 +93,9 @@ public class Tracker {
      * @return Возвращает массив заявок
      */
     public List<Item> findByName(String key) {
-        List<Item> result = new ArrayList<>();
-        for (Item item : this.items) {
-            if (item.getName().contains(key)) {
-                result.add(item);
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(e -> e.getName().contains(key))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -108,13 +105,10 @@ public class Tracker {
      * @return Возвращает заявку из хранища
      */
     public Item findById(String id) {
-        Item result = null;
-        for (Item item : this.items) {
-            if (id.equals(item.getId())) {
-                result = item;
-                break;
-            }
-        }
-        return result;
+        return items.stream()
+                .filter(e -> e.getId().equals(id))
+                .limit(1)
+                .findFirst()
+                .orElse(null);
     }
 }
