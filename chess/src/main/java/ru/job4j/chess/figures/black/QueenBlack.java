@@ -4,6 +4,8 @@ import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
+import java.util.Arrays;
+
 /**
  * Реализация логики темного ферзя.
  *
@@ -45,20 +47,11 @@ public class QueenBlack implements Figure {
     }
 
     private Cell findStepCell(int x, int y) {
-        Cell[] cells = Cell.values();
-        Cell step = null;
-        boolean haveStep = false;
-        for (Cell cell : cells) {
-            if (x == cell.x && y == cell.y) {
-                step = cell;
-                haveStep = true;
-                break;
-            }
-        }
-        if (!haveStep) {
-            throw new ImpossibleMoveException();
-        }
-        return step;
+        return Arrays.stream(Cell.values())
+                .filter(cell -> cell.x == x && cell.y == y)
+                .limit(1)
+                .findFirst()
+                .orElseThrow(ImpossibleMoveException::new);
     }
 
     @Override
