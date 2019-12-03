@@ -172,7 +172,6 @@ public class Chess extends Application {
         int y = (int) graphY / 40;
         return Arrays.stream(Cell.values())
                 .filter(cell -> cell.x == x && cell.y == y)
-                .limit(1)
                 .findFirst()
                 .orElse(Cell.A1);
     }
