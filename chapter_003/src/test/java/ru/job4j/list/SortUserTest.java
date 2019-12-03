@@ -43,11 +43,12 @@ public class SortUserTest {
         users.add(new User("Иван", 30, "Москва"));
         users.add(new User("Сергей", 20, "Москва"));
         users.add(new User("Иван", 25, "Москва"));
-        List<User> expected = new ArrayList<>();
-        expected.add(users.get(1));
-        expected.add(users.get(3));
-        expected.add(users.get(0));
-        expected.add(users.get(2));
+        List<User> expected = List.of(
+                users.get(1),
+                users.get(3),
+                users.get(0),
+                users.get(2)
+        );
         assertThat(new SortUser().sortNameLength(users).toString(), is(expected.toString()));
     }
 
@@ -61,11 +62,12 @@ public class SortUserTest {
         users.add(new User("Иван", 30, "Москва"));
         users.add(new User("Сергей", 20, "Москва"));
         users.add(new User("Иван", 25, "Москва"));
-        List<User> expected = new ArrayList<>();
-        expected.add(users.get(3));
-        expected.add(users.get(1));
-        expected.add(users.get(2));
-        expected.add(users.get(0));
+        List<User> expected = List.of(
+                users.get(3),
+                users.get(1),
+                users.get(2),
+                users.get(0)
+        );
         assertThat(new SortUser().sortByAllFields(users).toString(), is(expected.toString()));
     }
 
