@@ -97,4 +97,25 @@ public class SchoolTest {
         Map<String, Student> result = School.toMap(students);
         assertThat(result, is(expected));
     }
+
+    /**
+     * Тестирование метода получения списка студентов у которых балл аттестата больше 50.
+     */
+    @Test
+    public void whenGetStudentListLevelOf50ThenStudentsList() {
+        List<Student> students = Arrays.asList(
+                new Student("C-name", 49),
+                null,
+                new Student("B-name", 70),
+                new Student("A-name", 51),
+                null,
+                new Student("D-name", 31)
+        );
+        List<Student> expected = Arrays.asList(
+                students.get(3),
+                students.get(2)
+        );
+        List<Student> result = Student.levelOf(students, 50);
+        assertThat(result, is(expected));
+    }
 }
