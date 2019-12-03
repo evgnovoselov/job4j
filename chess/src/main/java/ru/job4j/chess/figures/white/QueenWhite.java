@@ -49,7 +49,6 @@ public class QueenWhite implements Figure {
     private Cell findStepCell(int x, int y) {
         return Arrays.stream(Cell.values())
                 .filter(cell -> cell.x == x && cell.y == y)
-                .limit(1)
                 .findFirst()
                 .orElseThrow(ImpossibleMoveException::new);
     }

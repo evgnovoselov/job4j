@@ -107,7 +107,6 @@ public class Tracker {
     public Item findById(String id) {
         return items.stream()
                 .filter(e -> e.getId().equals(id))
-                .limit(1)
                 .findFirst()
                 .orElse(null);
     }
