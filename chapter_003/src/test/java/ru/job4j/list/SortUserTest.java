@@ -21,11 +21,12 @@ public class SortUserTest {
      */
     @Test
     public void whenSortUserListToSetThenSortedSet() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("Evgeny", 34, "Moscow"));
-        users.add(new User("Petr", 33, "Bryansk"));
-        users.add(new User("Andrey", 32, "Don't know"));
-        users.add(new User("Evgeny", 31, "Moscow"));
+        List<User> users = List.of(
+                new User("Evgeny", 34, "Moscow"),
+                new User("Petr", 33, "Bryansk"),
+                new User("Andrey", 32, "Don't know"),
+                new User("Evgeny", 31, "Moscow")
+        );
         Set<User> expected = new TreeSet<>(Set.of(
                 users.get(3),
                 users.get(2),
@@ -40,11 +41,12 @@ public class SortUserTest {
      */
     @Test
     public void whenSortUsersNameLengthThenSortedUsers() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("Сергей", 25, "Москва"));
-        users.add(new User("Иван", 30, "Москва"));
-        users.add(new User("Сергей", 20, "Москва"));
-        users.add(new User("Иван", 25, "Москва"));
+        List<User> users = new ArrayList<>(List.of(
+                new User("Сергей", 25, "Москва"),
+                new User("Иван", 30, "Москва"),
+                new User("Сергей", 20, "Москва"),
+                new User("Иван", 25, "Москва")
+        ));
         List<User> expected = List.of(
                 users.get(1),
                 users.get(3),
@@ -59,11 +61,12 @@ public class SortUserTest {
      */
     @Test
     public void whenSortUsersByAllFieldsThenSortedUsers() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("Сергей", 25, "Москва"));
-        users.add(new User("Иван", 30, "Москва"));
-        users.add(new User("Сергей", 20, "Москва"));
-        users.add(new User("Иван", 25, "Москва"));
+        List<User> users = new ArrayList<>(List.of(
+                new User("Сергей", 25, "Москва"),
+                new User("Иван", 30, "Москва"),
+                new User("Сергей", 20, "Москва"),
+                new User("Иван", 25, "Москва")
+        ));
         List<User> expected = List.of(
                 users.get(3),
                 users.get(1),
@@ -72,5 +75,4 @@ public class SortUserTest {
         );
         assertThat(new SortUser().sortByAllFields(users).toString(), is(expected.toString()));
     }
-
 }
