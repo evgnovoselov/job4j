@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -20,16 +21,18 @@ public class UserConvertTest {
      */
     @Test
     public void whenConvertUserListToMapThenMapUsers() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("Evgeny", 34, "Moscow"));
-        users.add(new User("Petr", 33, "Bryansk"));
-        users.add(new User("Andrey", 32, "Don't know"));
-        users.add(new User("Evgeny", 31, "Moscow"));
-        HashMap<Integer, User> result = new HashMap<>();
-        result.put(users.get(0).getId(), users.get(0));
-        result.put(users.get(1).getId(), users.get(1));
-        result.put(users.get(2).getId(), users.get(2));
-        result.put(users.get(3).getId(), users.get(3));
+        List<User> users = List.of(
+                new User("Evgeny", 34, "Moscow"),
+                new User("Petr", 33, "Bryansk"),
+                new User("Andrey", 32, "Don't know"),
+                new User("Evgeny", 31, "Moscow")
+        );
+        Map<Integer, User> result = Map.of(
+                users.get(0).getId(), users.get(0),
+                users.get(1).getId(), users.get(1),
+                users.get(2).getId(), users.get(2),
+                users.get(3).getId(), users.get(3)
+        );
         assertThat(new UserConvert().process(users), is(result));
     }
 }

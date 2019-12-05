@@ -20,9 +20,10 @@ public class ConvertListTest {
      */
     @Test
     public void whenListArraysConvertThenList() {
-        List<int[]> list = new ArrayList<>();
-        list.add(new int[]{1, 2});
-        list.add(new int[]{3, 4, 5, 6});
+        List<int[]> list = List.of(
+                new int[]{1, 2},
+                new int[]{3, 4, 5, 6}
+        );
         assertThat(new ConvertList().convert(list), is(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6))));
     }
 }

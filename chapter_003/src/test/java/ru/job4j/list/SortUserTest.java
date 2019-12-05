@@ -2,7 +2,6 @@ package ru.job4j.list;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -41,12 +40,12 @@ public class SortUserTest {
      */
     @Test
     public void whenSortUsersNameLengthThenSortedUsers() {
-        List<User> users = new ArrayList<>(List.of(
+        List<User> users = List.of(
                 new User("Сергей", 25, "Москва"),
                 new User("Иван", 30, "Москва"),
                 new User("Сергей", 20, "Москва"),
                 new User("Иван", 25, "Москва")
-        ));
+        );
         List<User> expected = List.of(
                 users.get(1),
                 users.get(3),
@@ -61,12 +60,12 @@ public class SortUserTest {
      */
     @Test
     public void whenSortUsersByAllFieldsThenSortedUsers() {
-        List<User> users = new ArrayList<>(List.of(
+        List<User> users = List.of(
                 new User("Сергей", 25, "Москва"),
                 new User("Иван", 30, "Москва"),
                 new User("Сергей", 20, "Москва"),
                 new User("Иван", 25, "Москва")
-        ));
+        );
         List<User> expected = List.of(
                 users.get(3),
                 users.get(1),
