@@ -19,10 +19,10 @@ public class PriorityQueue {
      * @param task задача.
      */
     public void put(Task task) {
-        boolean isPut = false;
-        ListIterator<Task> taskListIterator = tasks.listIterator();
+        var isPut = false;
+        var taskListIterator = tasks.listIterator();
         while (taskListIterator.hasNext()) {
-            Task nextTask = taskListIterator.next();
+            var nextTask = taskListIterator.next();
             if (task.getPriority() <= nextTask.getPriority()) {
                 taskListIterator.previous();
                 taskListIterator.add(task);
