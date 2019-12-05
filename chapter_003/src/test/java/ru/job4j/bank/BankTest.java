@@ -26,7 +26,7 @@ public class BankTest {
         bank.addUser(new User("Evgeny", "11"));
         bank.addAccountToUser("11", new Account("1111"));
         bank.addAccountToUser("11", new Account("2222"));
-        List<Account> expected = new ArrayList<>(Arrays.asList(new Account("1111"), new Account("2222")));
+        List<Account> expected = Arrays.asList(new Account("1111"), new Account("2222"));
         assertThat(bank.getUserAccounts("11"), is(expected));
     }
 
@@ -53,7 +53,7 @@ public class BankTest {
         bank.addAccountToUser("11", new Account("1111"));
         bank.addAccountToUser("11", new Account("2222"));
         bank.deleteAccountFromUser("11", new Account("2222"));
-        List<Account> expected = new ArrayList<>(Collections.singletonList(new Account("1111")));
+        List<Account> expected = Collections.singletonList(new Account("1111"));
         assertThat(bank.getUserAccounts("11"), is(expected));
     }
 
