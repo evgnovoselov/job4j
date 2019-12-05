@@ -27,9 +27,9 @@ public class PhoneDictionary {
      * @return Список подощедщих пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-        String keyLowerCase = key.toLowerCase();
-        for (Person person : persons) {
+        var result = new ArrayList<Person>();
+        var keyLowerCase = key.toLowerCase();
+        for (var person : persons) {
             if (person.getName().toLowerCase().contains(keyLowerCase)
                     || person.getSurname().toLowerCase().contains(keyLowerCase)
                     || person.getPhone().toLowerCase().contains(keyLowerCase)

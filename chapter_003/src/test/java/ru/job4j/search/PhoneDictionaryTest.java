@@ -18,10 +18,10 @@ public class PhoneDictionaryTest {
      */
     @Test
     public void whenFindByName() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var phones = new PhoneDictionary();
         phones.add(new Person("Evgeny", "Novoselov", "317297", "Moscow"));
         phones.add(new Person("Petr", "Arsentev", "534872", "Bryansk"));
-        List<Person> persons = phones.find("Petr");
+        var persons = phones.find("Petr");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 
@@ -30,10 +30,10 @@ public class PhoneDictionaryTest {
      */
     @Test
     public void whenFindBySurnameLowerCase() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var phones = new PhoneDictionary();
         phones.add(new Person("Evgeny", "Novoselov", "317297", "Moscow"));
         phones.add(new Person("Petr", "Arsentev", "534872", "Bryansk"));
-        List<Person> persons = phones.find("Sen");
+        var persons = phones.find("Sen");
         assertThat(persons.iterator().next().getSurname(), is("Arsentev"));
     }
 }
