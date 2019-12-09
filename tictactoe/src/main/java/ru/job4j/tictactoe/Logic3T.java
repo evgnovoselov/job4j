@@ -27,7 +27,12 @@ public class Logic3T {
         return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0)
                 || this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1)
                 || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1);
+                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1)
+                || this.fillBy(Figure3T::hasMarkX, 1, 0, 0, 1)
+                || this.fillBy(Figure3T::hasMarkX, 2, 0, 0, 1)
+                || this.fillBy(Figure3T::hasMarkX, 0, 1, 1, 0)
+                || this.fillBy(Figure3T::hasMarkX, 0, 2, 1, 0)
+                ;
     }
 
     public boolean isWinnerO() {
