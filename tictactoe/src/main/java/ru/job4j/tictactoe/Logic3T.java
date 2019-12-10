@@ -11,6 +11,8 @@ public class Logic3T {
 
     public boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
         boolean result = false;
+        int countDiagonal = 0;
+        int countReverseDiagonal = 0;
         for (int row = 0; row < this.table.length; row++) {
             int countCol = 0;
             for (int col = 0; col < this.table.length; col++) {
@@ -31,7 +33,17 @@ public class Logic3T {
                     }
                 }
             }
-            if (result || countCol == this.table.length) {
+            if (predicate.test(this.table[row][row])) {
+                countDiagonal++;
+            }
+            if (predicate.test(this.table[this.table.length - 1 - row][row])) {
+                countReverseDiagonal++;
+            }
+            if (result
+                    || countCol >= this.table.length
+                    || countDiagonal >= this.table.length
+                    || countReverseDiagonal >= this.table.length
+            ) {
                 result = true;
                 break;
             }
