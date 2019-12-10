@@ -1,6 +1,10 @@
 package ru.job4j.tictactoe;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Logic3T {
     private final Figure3T[][] table;
@@ -13,39 +17,42 @@ public class Logic3T {
         boolean result = false;
         int countDiagonal = 0;
         int countReverseDiagonal = 0;
+        int[] countCols = new int[this.table.length];
+        int[] countRows = new int[this.table.length];
+        List<Figure3T> figures = Arrays.stream(this.table).flatMap(Stream::of).collect(Collectors.toList());
         for (int row = 0; row < this.table.length; row++) {
-            int countCol = 0;
-            for (int col = 0; col < this.table.length; col++) {
-                int countRow = 0;
-                if (predicate.test(this.table[row][col])) {
-                    countCol++;
+            if (result) {
+                break;
+            }
+            if (predicate.test(figures.get(row + row * this.table.length))) {
+                countDiagonal++;
+                if (countDiagonal >= this.table.length) {
+                    result = true;
+                    break;
                 }
-                if (row == 0) {
-                    for (row = 0; row < this.table.length; row++) {
-                        if (predicate.test(this.table[row][col])) {
-                            countRow++;
-                        }
-                    }
-                    row = 0;
-                    if (countRow == this.table.length) {
+            }
+            if (predicate.test(figures.get((this.table.length - 1) * row + this.table.length - 1))) {
+                countReverseDiagonal++;
+                if (countReverseDiagonal >= this.table.length) {
+                    result = true;
+                    break;
+                }
+            }
+            for (int col = 0; col < this.table.length; col++) {
+                if (predicate.test(figures.get(row * this.table.length + col))) {
+                    countRows[row]++;
+                    if (countRows[row] >= this.table.length) {
                         result = true;
                         break;
                     }
                 }
-            }
-            if (predicate.test(this.table[row][row])) {
-                countDiagonal++;
-            }
-            if (predicate.test(this.table[this.table.length - 1 - row][row])) {
-                countReverseDiagonal++;
-            }
-            if (result
-                    || countCol >= this.table.length
-                    || countDiagonal >= this.table.length
-                    || countReverseDiagonal >= this.table.length
-            ) {
-                result = true;
-                break;
+                if (predicate.test(figures.get(row + this.table.length * col))) {
+                    countCols[row]++;
+                    if (countCols[row] >= this.table.length) {
+                        result = true;
+                        break;
+                    }
+                }
             }
         }
         return result;
