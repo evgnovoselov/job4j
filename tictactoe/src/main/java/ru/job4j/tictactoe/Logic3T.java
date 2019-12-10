@@ -9,7 +9,7 @@ public class Logic3T {
         this.table = table;
     }
 
-    public boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
+    public boolean fillBy(Predicate<Figure3T> predicate) {
         boolean result = false;
         int countDiagonal = 0;
         int countReverseDiagonal = 0;
@@ -52,21 +52,11 @@ public class Logic3T {
     }
 
     public boolean isWinnerX() {
-        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkX, this.table.length - 1, 0, -1, 1)
-                || this.fillBy(Figure3T::hasMarkX, 1, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 2, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkX, 0, 1, 1, 0)
-                || this.fillBy(Figure3T::hasMarkX, 0, 2, 1, 0);
+        return this.fillBy(Figure3T::hasMarkX);
     }
 
     public boolean isWinnerO() {
-        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0)
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1)
-                || this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 1)
-                || this.fillBy(Figure3T::hasMarkO, this.table.length - 1, 0, -1, 1);
+        return this.fillBy(Figure3T::hasMarkO);
     }
 
     public boolean hasGap() {
