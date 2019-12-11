@@ -1,9 +1,7 @@
 package ru.job4j.tictactoe;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Logic3T {
@@ -13,57 +11,37 @@ public class Logic3T {
         this.table = table;
     }
 
-    public boolean fillBy(Predicate<Figure3T> predicate) {
-        boolean result = false;
-        int countDiagonal = 0;
-        int countReverseDiagonal = 0;
-        int[] countCols = new int[this.table.length];
-        int[] countRows = new int[this.table.length];
-        List<Figure3T> figures = Arrays.stream(this.table).flatMap(Stream::of).collect(Collectors.toList());
-        for (int row = 0; row < this.table.length; row++) {
-            if (result) {
+    public boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
+        boolean result = true;
+        for (int index = 0; index != this.table.length; index++) {
+            Figure3T cell = this.table[startX][startY];
+            startX += deltaX;
+            startY += deltaY;
+            if (!predicate.test(cell)) {
+                result = false;
                 break;
-            }
-            if (predicate.test(figures.get(row + row * this.table.length))) {
-                countDiagonal++;
-                if (countDiagonal >= this.table.length) {
-                    result = true;
-                    break;
-                }
-            }
-            if (predicate.test(figures.get((this.table.length - 1) * row + this.table.length - 1))) {
-                countReverseDiagonal++;
-                if (countReverseDiagonal >= this.table.length) {
-                    result = true;
-                    break;
-                }
-            }
-            for (int col = 0; col < this.table.length; col++) {
-                if (predicate.test(figures.get(row * this.table.length + col))) {
-                    countRows[row]++;
-                    if (countRows[row] >= this.table.length) {
-                        result = true;
-                        break;
-                    }
-                }
-                if (predicate.test(figures.get(row + this.table.length * col))) {
-                    countCols[row]++;
-                    if (countCols[row] >= this.table.length) {
-                        result = true;
-                        break;
-                    }
-                }
             }
         }
         return result;
     }
 
+    private boolean isWinner(Predicate<Figure3T> predicate) {
+        return this.fillBy(predicate, 0, 0, 1, 0)
+                || this.fillBy(predicate, 0, 0, 0, 1)
+                || this.fillBy(predicate, 0, 0, 1, 1)
+                || this.fillBy(predicate, this.table.length - 1, 0, -1, 1)
+                || this.fillBy(predicate, 1, 0, 0, 1)
+                || this.fillBy(predicate, 2, 0, 0, 1)
+                || this.fillBy(predicate, 0, 1, 1, 0)
+                || this.fillBy(predicate, 0, 2, 1, 0);
+    }
+
     public boolean isWinnerX() {
-        return this.fillBy(Figure3T::hasMarkX);
+        return this.isWinner(Figure3T::hasMarkX);
     }
 
     public boolean isWinnerO() {
-        return this.fillBy(Figure3T::hasMarkO);
+        return this.isWinner(Figure3T::hasMarkO);
     }
 
     public boolean hasGap() {
