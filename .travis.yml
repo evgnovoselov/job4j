@@ -1,7 +1,7 @@
 # Используем язык java.
 language: java
 jdk:
-  - openjdk11
+  - openjdk14
 
 # используем режим обычного пользователя для сборки проекта.
 sudo: false
